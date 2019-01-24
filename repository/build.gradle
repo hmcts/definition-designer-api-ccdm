@@ -1,5 +1,5 @@
 jar {
-    baseName = 'definition-store-repository'
+    baseName = 'definition-designer-repository'
 }
 
 bootRepackage {

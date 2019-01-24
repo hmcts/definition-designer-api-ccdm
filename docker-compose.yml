@@ -2,10 +2,10 @@
 version: '3'
 
 services:
-  ccd-definition-store-api:
+  ccd-definition-designer-api:
     build:
       context: .
-    image: hmcts/ccd-definition-store-api
+    image: hmcts/ccd-definition-designer-api
     environment:
       - DEFINITION_STORE_DB_HOST=ccd-definition-store-database
       - DEFINITION_STORE_DB_PORT=5432
@@ -16,11 +16,11 @@ services:
       - USER_PROFILE_HOST
       - IDAM_USER_URL
       - IDAM_S2S_URL
-      - REFORM_SERVICE_NAME=ccd-definition-store-api
+      - REFORM_SERVICE_NAME=ccd-definition-designer-api
       - REFORM_TEAM=ccd
       - REFORM_ENVIRONMENT=local
     ports:
-      - 4451:4451
+      - 4454:4454
     depends_on:
       - ccd-definition-store-database
     links:
