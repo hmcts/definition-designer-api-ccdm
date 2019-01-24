@@ -53,8 +53,8 @@ resource "azurerm_storage_container" "imports_container" {
   container_access_type = "private"
 }
 
-data "azurerm_key_vault_secret" "definition_store_s2s_secret" {
-  name = "microservicekey-ccd-definition"
+data "azurerm_key_vault_secret" "definition_designer_s2s_secret" {
+  name = "microservicekey-ccd-definition-designer"
   vault_uri = "${local.s2s_vault_url}"
 }
 
@@ -80,7 +80,7 @@ data "azurerm_key_vault_secret" "ccd_elastic_search_password" {
   vault_uri = "${data.azurerm_key_vault.ccd_shared_key_vault.vault_uri}"
 }
 
-module "case-definition-store-api" {
+module "ccd-definition-designer-api" {
   source   = "git@github.com:hmcts/cnp-module-webapp?ref=master"
   product  = "${local.app_full_name}"
   location = "${var.location}"
@@ -94,19 +94,19 @@ module "case-definition-store-api" {
   capacity = "${var.capacity}"
 
   app_settings = {
-    DEFINITION_STORE_DB_HOST = "${module.definition-store-db.host_name}"
-    DEFINITION_STORE_DB_PORT = "${module.definition-store-db.postgresql_listen_port}"
-    DEFINITION_STORE_DB_NAME = "${module.definition-store-db.postgresql_database}"
-    DEFINITION_STORE_DB_USERNAME = "${module.definition-store-db.user_name}"
-    DEFINITION_STORE_DB_PASSWORD = "${module.definition-store-db.postgresql_password}"
+    DEFINITION_DESIGNER_DB_HOST     = "${module.definition-designer-db.host_name}"
+    DEFINITION_DESIGNER_DB_PORT     = "${module.definition-designer-db.postgresql_listen_port}"
+    DEFINITION_DESIGNER_DB_NAME     = "${module.definition-designer-db.postgresql_database}"
+    DEFINITION_DESIGNER_DB_USERNAME = "${module.definition-designer-db.user_name}"
+    DEFINITION_DESIGNER_DB_PASSWORD = "${module.definition-designer-db.postgresql_password}"
 
     ENABLE_DB_MIGRATE = "false"
 
     IDAM_USER_URL = "${var.idam_api_url}"
     IDAM_S2S_URL = "${local.s2s_url}"
-    DEFINITION_STORE_IDAM_KEY = "${data.azurerm_key_vault_secret.definition_store_s2s_secret.value}"
+    DEFINITION_DESIGNER_IDAM_KEY = "${data.azurerm_key_vault_secret.definition_designer_s2s_secret.value}"
 
-    DEFINITION_STORE_S2S_AUTHORISED_SERVICES = "${var.authorised-services}"
+    DEFINITION_DESIGNER_S2S_AUTHORISED_SERVICES = "${var.authorised-services}"
 
     USER_PROFILE_HOST = "http://ccd-user-profile-api-${local.env_ase_url}"
 
@@ -129,7 +129,7 @@ module "case-definition-store-api" {
   common_tags = "${var.common_tags}"
 }
 
-module "definition-store-db" {
+module "definition-designer-db" {
   source = "git@github.com:hmcts/cnp-module-postgres?ref=master"
   product = "${local.app_full_name}-postgres-db"
   location = "${var.location}"
@@ -148,30 +148,30 @@ module "definition-store-db" {
 
 resource "azurerm_key_vault_secret" "POSTGRES-USER" {
   name = "${local.app_full_name}-POSTGRES-USER"
-  value = "${module.definition-store-db.user_name}"
+  value = "${module.definition-designer-db.user_name}"
   vault_uri = "${data.azurerm_key_vault.ccd_shared_key_vault.vault_uri}"
 }
 
 resource "azurerm_key_vault_secret" "POSTGRES-PASS" {
   name = "${local.app_full_name}-POSTGRES-PASS"
-  value = "${module.definition-store-db.postgresql_password}"
+  value = "${module.definition-designer-db.postgresql_password}"
   vault_uri = "${data.azurerm_key_vault.ccd_shared_key_vault.vault_uri}"
 }
 
 resource "azurerm_key_vault_secret" "POSTGRES_HOST" {
   name = "${local.app_full_name}-POSTGRES-HOST"
-  value = "${module.definition-store-db.host_name}"
+  value = "${module.definition-designer-db.host_name}"
   vault_uri = "${data.azurerm_key_vault.ccd_shared_key_vault.vault_uri}"
 }
 
 resource "azurerm_key_vault_secret" "POSTGRES_PORT" {
   name = "${local.app_full_name}-POSTGRES-PORT"
-  value = "${module.definition-store-db.postgresql_listen_port}"
+  value = "${module.definition-designer-db.postgresql_listen_port}"
   vault_uri = "${data.azurerm_key_vault.ccd_shared_key_vault.vault_uri}"
 }
 
 resource "azurerm_key_vault_secret" "POSTGRES_DATABASE" {
   name = "${local.app_full_name}-POSTGRES-DATABASE"
-  value = "${module.definition-store-db.postgresql_database}"
+  value = "${module.definition-designer-db.postgresql_database}"
   vault_uri = "${data.azurerm_key_vault.ccd_shared_key_vault.vault_uri}"
 }
