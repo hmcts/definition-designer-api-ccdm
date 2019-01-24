@@ -20,7 +20,7 @@ import static uk.gov.hmcts.ccd.definition.store.domain.service.response.SaveOper
 @RestController
 @Api(value = "/api/user-role")
 @RequestMapping(value = "/api")
-class UserRoleController {
+public class UserRoleController {
 
     private final UserRoleService userRoleService;
 
@@ -38,7 +38,7 @@ class UserRoleController {
         @ApiResponse(code = 205, message = "User role is updated successfully and the user agent SHOULD reset the document view"),
         @ApiResponse(code = 409, message = "Bad request, for example, incorrect data")
     })
-    ResponseEntity<UserRole> userRolePut(
+    public ResponseEntity<UserRole> userRolePut(
         @ApiParam(value = "user role", required = true) @RequestBody @NotNull UserRole userRole) {
         final ServiceResponse<UserRole> serviceResponse = userRoleService.saveRole(userRole);
         final ResponseEntity.BodyBuilder responseEntityBuilder = serviceResponse.getOperation() == CREATE
@@ -55,7 +55,7 @@ class UserRoleController {
         @ApiResponse(code = 205, message = "User role is updated successfully and the user agent SHOULD reset the document view"),
         @ApiResponse(code = 409, message = "Bad request, for example, incorrect data")
     })
-    ResponseEntity<UserRole> userRoleCreate(
+    public ResponseEntity<UserRole> userRoleCreate(
         @ApiParam(value = "user role", required = true) @RequestBody @NotNull UserRole userRole) {
         final ServiceResponse<UserRole> serviceResponse = userRoleService.createRole(userRole);
         final ResponseEntity.BodyBuilder responseEntityBuilder = ResponseEntity.status(CREATED);
@@ -69,7 +69,7 @@ class UserRoleController {
         @ApiResponse(code = 200, message = "User role is found"),
         @ApiResponse(code = 404, message = "Unable to find user role")
     })
-    UserRole userRoleGet(@RequestParam("role") @NotNull byte[] roleBase64EncodedBytes) {
+    public UserRole userRoleGet(@RequestParam("role") @NotNull byte[] roleBase64EncodedBytes) {
         final String role = new String(Base64.getDecoder().decode(roleBase64EncodedBytes));
         return userRoleService.getRole(role);
     }

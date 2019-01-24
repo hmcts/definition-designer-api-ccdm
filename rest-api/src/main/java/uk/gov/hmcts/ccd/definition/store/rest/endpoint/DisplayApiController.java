@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -46,7 +47,8 @@ public class DisplayApiController {
     }
 
     @RequestMapping(value = "/display/tab-structure/{id}", method = RequestMethod.GET, produces = {"application/json"})
-    @ApiOperation(value = "Fetch a Case Tab Collection for a given Case Type", notes = "Returns the schema of a single case type.\n", response = CaseTabCollection.class)
+    @ApiOperation(value = "Fetch a Case Tab Collection for a given Case Type",
+                  notes = "Returns the schema of a single case type.\n", response = CaseTabCollection.class)
     @ApiResponses(value = {
         @ApiResponse(code = 200, message = "A Case Tab Collection"),
         @ApiResponse(code = 200, message = "Unexpected error")
@@ -56,8 +58,10 @@ public class DisplayApiController {
         return this.displayService.findTabStructureForCaseType(id);
     }
 
-    @RequestMapping(value = "/display/wizard-page-structure/case-types/{ctid}/event-triggers/{etid}", method = RequestMethod.GET, produces = {"application/json"})
-    @ApiOperation(value = "Fetch a Case Wizard Page Collection for a given Case Type", notes = "Returns the schema of a single case type.\n", response = CaseTabCollection.class)
+    @GetMapping(value = "/display/wizard-page-structure/case-types/{ctid}/event-triggers/{etid}",
+                produces = {"application/json"})
+    @ApiOperation(value = "Fetch a Case Wizard Page Collection for a given Case Type",
+                  notes = "Returns the schema of a single case type.\n", response = CaseTabCollection.class)
     @ApiResponses(value = {
         @ApiResponse(code = 200, message = "A Case Wizard Page Collection"),
         @ApiResponse(code = 200, message = "Unexpected error")

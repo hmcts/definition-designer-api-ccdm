@@ -2,15 +2,15 @@
 
 set -e
 
-if [ -z "$DEFINITION_STORE_DB_USERNAME" ] || [ -z "$DEFINITION_STORE_DB_PASSWORD" ]; then
-  echo "ERROR: Missing environment variable. Set value for both 'DEFINITION_STORE_DB_USERNAME' and 'DEFINITION_STORE_DB_PASSWORD'."
+if [ -z "$DEFINITION_DESIGNER_DB_USERNAME" ] || [ -z "$DEFINITION_DESIGNER_DB_PASSWORD" ]; then
+  echo "ERROR: Missing environment variable. Set value for both '$DEFINITION_DESIGNER_DB_USERNAME' and '$DEFINITION_DESIGNER_DB_PASSWORD'."
   exit 1
 fi
 
 # Create role and database
-psql -v ON_ERROR_STOP=1 --username postgres --set USERNAME=$DEFINITION_STORE_DB_USERNAME --set PASSWORD=$DEFINITION_STORE_DB_PASSWORD <<-EOSQL
+psql -v ON_ERROR_STOP=1 --username postgres --set USERNAME=$DEFINITION_DESIGNER_DB_USERNAME --set PASSWORD=$DEFINITION_DESIGNER_DB_PASSWORD <<-EOSQL
   CREATE USER :USERNAME WITH PASSWORD ':PASSWORD';
-  CREATE DATABASE ccd_definition
+  CREATE DATABASE ccd_definition_designer
     WITH OWNER = :USERNAME
     ENCODING = 'UTF-8'
     CONNECTION LIMIT = -1;

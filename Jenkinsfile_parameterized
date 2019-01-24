@@ -36,9 +36,7 @@ def vaultOverrides = [
     'spreview': 'saat'
 ]
 
-// from PR-20 withParameterizedPipeline('java', 'ccd', 'definition-store-api', params.ENVIRONMENT, 'sandbox') {
-// from master withParameterizedPipeline(params.TYPE, params.PRODUCT_NAME, params.APP, params.ENVIRONMENT, params.SUBSCRIPTION) {
-withParameterizedPipeline('java', 'ccd', 'definition-store-api', params.ENVIRONMENT, 'sandbox') {
+withParameterizedPipeline('java', 'ccd', 'definition-designer-api', params.ENVIRONMENT, 'sandbox') {
     enableSlackNotifications('#ccd-param-builds')
     enableDbMigration()
     overrideVaultEnvironments(vaultOverrides)

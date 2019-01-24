@@ -1,5 +1,5 @@
 jar {
-    baseName = 'definition-store-rest-api'
+    baseName = 'definition-designer-rest-api'
 }
 
 ext {

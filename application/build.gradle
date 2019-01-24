@@ -1,4 +1,4 @@
-ext.applicationName = 'case-definition-store-api'
+ext.applicationName = 'ccd-definition-designer-api'
 
 jar {
     baseName = "${applicationName}"

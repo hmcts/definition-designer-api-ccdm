@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import uk.gov.hmcts.ccd.definition.store.rest.model.IDAMProperties;
+import uk.gov.hmcts.ccd.definition.store.rest.model.IdamProperties;
 import uk.gov.hmcts.ccd.definition.store.rest.service.IdamProfileClient;
 
 @RestController
@@ -19,17 +19,17 @@ class IdamProfileController {
     private final IdamProfileClient idamProfileClient;
 
     @Autowired
-    IdamProfileController(final IdamProfileClient idamProfileService) {
+    public IdamProfileController(final IdamProfileClient idamProfileService) {
         this.idamProfileClient = idamProfileService;
     }
 
     @GetMapping(value = "/idam/profile", produces = {"application/json"})
-    @ApiOperation(value = "Gets idam profile from current logged in user", response = IDAMProperties.class)
+    @ApiOperation(value = "Gets idam profile from current logged in user", response = IdamProperties.class)
     @ApiResponses(value = {
         @ApiResponse(code = 200, message = "A Case Type Schema"),
         @ApiResponse(code = 200, message = "Unexpected error")
     })
-    IDAMProperties getIdamProfile() {
+    public IdamProperties getIdamProfile() {
         return idamProfileClient.getLoggedInUserDetails();
     }
 
