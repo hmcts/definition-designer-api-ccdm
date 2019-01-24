@@ -19,53 +19,53 @@ import uk.gov.hmcts.ccd.definition.store.domain.exception.NotFoundException;
 import javax.persistence.OptimisticLockException;
 import javax.persistence.PersistenceException;
 import java.io.IOException;
-import java.util.Set;
 
 @ControllerAdvice
 @Order(Ordered.LOWEST_PRECEDENCE)
 public class RestEndPointExceptionHandler extends ResponseEntityExceptionHandler {
 
     private static final Integer MAX_DEPTH = 5;
-    private static Logger log = LoggerFactory.getLogger(RestEndPointExceptionHandler.class);
+    private static final String EXCEPTION_THROWN = "Exception thrown '{}'";
+    private static final Logger LOG = LoggerFactory.getLogger( RestEndPointExceptionHandler.class );
 
     @ExceptionHandler(value = {IOException.class, PersistenceException.class})
     public ResponseEntity<Object> handleException(RuntimeException ex, WebRequest request) {
-        log.error("Exception thrown '{}'", ex.getMessage(), ex);
+        LOG.error(EXCEPTION_THROWN, ex.getMessage(), ex);
         return handleExceptionInternal(ex, flattenExceptionMessages(ex), new HttpHeaders(),
             HttpStatus.INTERNAL_SERVER_ERROR, request);
     }
 
     @ExceptionHandler(value = {OptimisticLockException.class})
     public ResponseEntity<Object> handleConflict(PersistenceException ex, WebRequest request) {
-        log.error("Exception thrown '{}'", ex.getMessage(), ex);
+        LOG.error(EXCEPTION_THROWN, ex.getMessage(), ex);
         return handleExceptionInternal(ex, flattenExceptionMessages(ex), new HttpHeaders(),
             HttpStatus.CONFLICT, request);
     }
 
     @ExceptionHandler(value = {ConcurrencyFailureException.class})
     public ResponseEntity<Object> handleConcurrencyFailure(ConcurrencyFailureException ex, WebRequest request) {
-        log.error("Exception thrown '{}'", ex.getMessage(), ex);
+        LOG.error(EXCEPTION_THROWN, ex.getMessage(), ex);
         return handleExceptionInternal(ex, flattenExceptionMessages(ex), new HttpHeaders(),
             HttpStatus.CONFLICT, request);
     }
 
     @ExceptionHandler(value = {NotFoundException.class})
     public ResponseEntity<Object> handleNotFound(NotFoundException ex, WebRequest request) {
-        log.error("Exception thrown '{}'", ex.getMessage(), ex);
+        LOG.error(EXCEPTION_THROWN, ex.getMessage(), ex);
         return handleExceptionInternal(ex, flattenExceptionMessages(ex), new HttpHeaders(),
             HttpStatus.NOT_FOUND, request);
     }
 
     @ExceptionHandler(value = {ConstraintViolationException.class})
     public ResponseEntity<Object> handleConstraintVioldation(ConstraintViolationException ex, WebRequest request) {
-        log.error("Exception thrown '{}'", ex.getMessage(), ex);
+        LOG.error(EXCEPTION_THROWN, ex.getMessage(), ex);
         return handleExceptionInternal(ex, flattenExceptionMessages(ex), new HttpHeaders(),
             HttpStatus.CONFLICT, request);
     }
 
     @ExceptionHandler(value = {BadRequestException.class})
     public ResponseEntity<Object> handleBadRequest(BadRequestException ex, WebRequest request) {
-        log.error("Exception thrown '{}'", ex.getMessage(), ex);
+        LOG.error(EXCEPTION_THROWN, ex.getMessage(), ex);
         return handleExceptionInternal(ex, flattenExceptionMessages(ex), new HttpHeaders(),
             HttpStatus.BAD_REQUEST, request);
     }
@@ -76,20 +76,11 @@ public class RestEndPointExceptionHandler extends ResponseEntityExceptionHandler
         Integer remaining = MAX_DEPTH;
         Throwable inner = ex;
         while ((inner = inner.getCause()) != null && 0 < --remaining) {
-            log.debug("Remaining '{}' out of '{}'", remaining, MAX_DEPTH);
+            LOG.debug( "Remaining '{}' out of '{}'", remaining, MAX_DEPTH );
             sb.append("\n")
               .append(inner.getMessage());
         }
 
         return sb.toString();
-    }
-
-    private String getMessagesAsString(Set<String> messages) {
-        StringBuilder result = new StringBuilder();
-        messages.remove(null);
-        for (String message : messages) {
-            result.append(message + ". ");
-        }
-        return result.toString();
     }
 }
