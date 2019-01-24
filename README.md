@@ -1,13 +1,10 @@
-# ccd-case-definition-store-api
-[![API Docs](https://img.shields.io/badge/API%20Docs-site-e140ad.svg)](https://hmcts.github.io/reform-api-docs/swagger.html?url=https://hmcts.github.io/reform-api-docs/specs/ccd-definition-store-api.json)
+# ccd-definition-designer-api
+[![API Docs](https://img.shields.io/badge/API%20Docs-site-e140ad.svg)](https://hmcts.github.io/reform-api-docs/swagger.html?url=https://hmcts.github.io/reform-api-docs/specs/ccd-definition-designer-api.json)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Build Status](https://api.travis-ci.org/hmcts/ccd-definition-store-api.svg?branch=master)](https://travis-ci.org/hmcts/ccd-definition-store-api)
-[![Docker Build Status](https://img.shields.io/docker/build/hmcts/ccd-definition-store-api.svg)](https://hub.docker.com/r/hmcts/ccd-definition-store-api)
-[![codecov](https://codecov.io/gh/hmcts/ccd-definition-store-api/branch/master/graph/badge.svg)](https://codecov.io/gh/hmcts/ccd-definition-store-api)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/d3b02d95faf6419ca6fbb15b2e712b8b)](https://www.codacy.com/app/adr1ancho/ccd-definition-store-api?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=hmcts/ccd-definition-store-api&amp;utm_campaign=Badge_Grade)
-[![Codacy Badge](https://api.codacy.com/project/badge/Coverage/d3b02d95faf6419ca6fbb15b2e712b8b)](https://www.codacy.com/app/adr1ancho/ccd-definition-store-api?utm_source=github.com&utm_medium=referral&utm_content=hmcts/ccd-definition-store-api&utm_campaign=Badge_Coverage)
-[![Known Vulnerabilities](https://snyk.io/test/github/hmcts/ccd-definition-store-api/badge.svg)](https://snyk.io/test/github/hmcts/ccd-definition-store-api)
-[![HitCount](http://hits.dwyl.io/hmcts/ccd-definition-store-api.svg)](#ccd-definition-store-api)
+[![Build Status](https://api.travis-ci.org/hmcts/ccd-definition-designer-api.svg?branch=master)](https://travis-ci.org/hmcts/ccd-definition-designer-api)
+[![Docker Build Status](https://img.shields.io/docker/build/hmcts/ccd-definition-designer-api.svg)](https://hub.docker.com/r/hmcts/ccd-definition-designer-api)
+[![codecov](https://codecov.io/gh/hmcts/ccd-definition-designer-api/branch/master/graph/badge.svg)](https://codecov.io/gh/hmcts/ccd-definition-designer-api)
+[![HitCount](http://hits.dwyl.io/hmcts/ccd-definition-designer-api.svg)](#ccd-definition-designer-api)
 
 Validation and persistence of definitions for field types, jurisdictions, case types and associated display elements.
 
@@ -66,7 +63,7 @@ The above will build both the application and database images.
 If you want to build only one of them just specify the name assigned in docker compose file, e.g.:
 
 ```bash
-docker-compose build ccd-definition-store-api
+docker-compose build ccd-definition-designer-api
 ```
 
 When the project has been packaged in `target/` directory, 
@@ -78,8 +75,8 @@ docker-compose up
 
 As a result the following containers will get created and started:
 
- - Database exposing port `5451`
- - API exposing ports `4451`
+ - Database exposing port `5000`
+ - API exposing ports `4454`
 
 #### Handling database
 

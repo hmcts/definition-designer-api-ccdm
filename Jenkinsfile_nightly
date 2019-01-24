@@ -9,7 +9,7 @@ properties([
 
 def type = "java"
 def product = "ccd"
-def component = "definition-store-api"
+def component = "definition-designer-api"
 
 def secrets = [
     'ccd-${env}': [

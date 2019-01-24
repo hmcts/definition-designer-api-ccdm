@@ -80,7 +80,7 @@ data "azurerm_key_vault_secret" "ccd_elastic_search_password" {
   vault_uri = "${data.azurerm_key_vault.ccd_shared_key_vault.vault_uri}"
 }
 
-module "case-definition-store-api" {
+module "ccd-definition-designer-api" {
   source   = "git@github.com:hmcts/cnp-module-webapp?ref=master"
   product  = "${local.app_full_name}"
   location = "${var.location}"

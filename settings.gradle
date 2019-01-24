@@ -1,4 +1,4 @@
-rootProject.name = 'case-definition-store-api'
+rootProject.name = 'case-definition-designer-api'
 
 include 'app-insights'
 include 'repository'

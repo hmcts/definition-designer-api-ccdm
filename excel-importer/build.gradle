@@ -1,5 +1,5 @@
 jar {
-    baseName = 'definition-store-excel-importer'
+    baseName = 'definition-designer-excel-importer'
 }
 
 evaluationDependsOn(':domain')

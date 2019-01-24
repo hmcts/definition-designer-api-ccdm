@@ -6,7 +6,7 @@ def type = "java"
 
 def product = "ccd"
 
-def app = "definition-store-api"
+def app = "definition-designer-api"
 
 def secrets = [
     'ccd-${env}': [

@@ -1,5 +1,5 @@
 jar {
-    baseName = 'definition-store-elastic-search-support'
+    baseName = 'definition-designer-elastic-search-support'
 }
 
 bootRepackage {
