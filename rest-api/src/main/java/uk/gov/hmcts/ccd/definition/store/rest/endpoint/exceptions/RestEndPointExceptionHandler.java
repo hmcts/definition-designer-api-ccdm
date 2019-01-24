@@ -26,7 +26,7 @@ public class RestEndPointExceptionHandler extends ResponseEntityExceptionHandler
 
     private static final Integer MAX_DEPTH = 5;
     private static final String EXCEPTION_THROWN = "Exception thrown '{}'";
-    private static final Logger LOG = LoggerFactory.getLogger( RestEndPointExceptionHandler.class );
+    private static final Logger LOG = LoggerFactory.getLogger(RestEndPointExceptionHandler.class);
 
     @ExceptionHandler(value = {IOException.class, PersistenceException.class})
     public ResponseEntity<Object> handleException(RuntimeException ex, WebRequest request) {
@@ -76,9 +76,8 @@ public class RestEndPointExceptionHandler extends ResponseEntityExceptionHandler
         Integer remaining = MAX_DEPTH;
         Throwable inner = ex;
         while ((inner = inner.getCause()) != null && 0 < --remaining) {
-            LOG.debug( "Remaining '{}' out of '{}'", remaining, MAX_DEPTH );
-            sb.append("\n")
-              .append(inner.getMessage());
+            LOG.debug("Remaining '{}' out of '{}'", remaining, MAX_DEPTH);
+            sb.append("\n").append(inner.getMessage());
         }
 
         return sb.toString();
