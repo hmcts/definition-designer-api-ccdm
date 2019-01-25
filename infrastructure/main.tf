@@ -94,11 +94,11 @@ module "ccd-definition-designer-api" {
   capacity = "${var.capacity}"
 
   app_settings = {
-    DEFINITION_STORE_DB_HOST = "${module.definition-store-db.host_name}"
-    DEFINITION_STORE_DB_PORT = "${module.definition-store-db.postgresql_listen_port}"
-    DEFINITION_STORE_DB_NAME = "${module.definition-store-db.postgresql_database}"
-    DEFINITION_STORE_DB_USERNAME = "${module.definition-store-db.user_name}"
-    DEFINITION_STORE_DB_PASSWORD = "${module.definition-store-db.postgresql_password}"
+    DEFINITION_DESIGNER_DB_HOST     = "${module.definition-designer-db.host_name}"
+    DEFINITION_DESIGNER_DB_PORT     = "${module.definition-designer-db.postgresql_listen_port}"
+    DEFINITION_DESIGNER_DB_NAME     = "${module.definition-designer-db.postgresql_database}"
+    DEFINITION_DESIGNER_DB_USERNAME = "${module.definition-designer-db.user_name}"
+    DEFINITION_DESIGNER_DB_PASSWORD = "${module.definition-designer-db.postgresql_password}"
 
     ENABLE_DB_MIGRATE = "false"
 
@@ -129,7 +129,7 @@ module "ccd-definition-designer-api" {
   common_tags = "${var.common_tags}"
 }
 
-module "definition-store-db" {
+module "definition-designer-db" {
   source = "git@github.com:hmcts/cnp-module-postgres?ref=master"
   product = "${local.app_full_name}-postgres-db"
   location = "${var.location}"
@@ -148,30 +148,30 @@ module "definition-store-db" {
 
 resource "azurerm_key_vault_secret" "POSTGRES-USER" {
   name = "${local.app_full_name}-POSTGRES-USER"
-  value = "${module.definition-store-db.user_name}"
+  value = "${module.definition-designer-db.user_name}"
   vault_uri = "${data.azurerm_key_vault.ccd_shared_key_vault.vault_uri}"
 }
 
 resource "azurerm_key_vault_secret" "POSTGRES-PASS" {
   name = "${local.app_full_name}-POSTGRES-PASS"
-  value = "${module.definition-store-db.postgresql_password}"
+  value = "${module.definition-designer-db.postgresql_password}"
   vault_uri = "${data.azurerm_key_vault.ccd_shared_key_vault.vault_uri}"
 }
 
 resource "azurerm_key_vault_secret" "POSTGRES_HOST" {
   name = "${local.app_full_name}-POSTGRES-HOST"
-  value = "${module.definition-store-db.host_name}"
+  value = "${module.definition-designer-db.host_name}"
   vault_uri = "${data.azurerm_key_vault.ccd_shared_key_vault.vault_uri}"
 }
 
 resource "azurerm_key_vault_secret" "POSTGRES_PORT" {
   name = "${local.app_full_name}-POSTGRES-PORT"
-  value = "${module.definition-store-db.postgresql_listen_port}"
+  value = "${module.definition-designer-db.postgresql_listen_port}"
   vault_uri = "${data.azurerm_key_vault.ccd_shared_key_vault.vault_uri}"
 }
 
 resource "azurerm_key_vault_secret" "POSTGRES_DATABASE" {
   name = "${local.app_full_name}-POSTGRES-DATABASE"
-  value = "${module.definition-store-db.postgresql_database}"
+  value = "${module.definition-designer-db.postgresql_database}"
   vault_uri = "${data.azurerm_key_vault.ccd_shared_key_vault.vault_uri}"
 }
