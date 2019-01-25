@@ -53,8 +53,8 @@ resource "azurerm_storage_container" "imports_container" {
   container_access_type = "private"
 }
 
-data "azurerm_key_vault_secret" "definition_store_s2s_secret" {
-  name = "microservicekey-ccd-definition"
+data "azurerm_key_vault_secret" "definition_designer_s2s_secret" {
+  name = "microservicekey-ccd-definition-designer"
   vault_uri = "${local.s2s_vault_url}"
 }
 
@@ -104,9 +104,9 @@ module "ccd-definition-designer-api" {
 
     IDAM_USER_URL = "${var.idam_api_url}"
     IDAM_S2S_URL = "${local.s2s_url}"
-    DEFINITION_STORE_IDAM_KEY = "${data.azurerm_key_vault_secret.definition_store_s2s_secret.value}"
+    DEFINITION_DESIGNER_IDAM_KEY = "${data.azurerm_key_vault_secret.definition_designer_s2s_secret.value}"
 
-    DEFINITION_STORE_S2S_AUTHORISED_SERVICES = "${var.authorised-services}"
+    DEFINITION_DESIGNER_S2S_AUTHORISED_SERVICES = "${var.authorised-services}"
 
     USER_PROFILE_HOST = "http://ccd-user-profile-api-${local.env_ase_url}"
 
