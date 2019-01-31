@@ -153,4 +153,55 @@
         <gav regex="true">^org\.springframework:spring-.+:.*$</gav>
         <cve>CVE-2018-15756</cve>
     </suppress>
+    <suppress>
+        <notes>
+            Temporary suppression
+            FasterXML jackson-databind 2.x before 2.9.7 might allow remote attackers to execute arbitrary code by leveraging failure to block the blaze-ds-opt and blaze-ds-core classes from polymorphic deserialization.
+        </notes>
+        <cve>CVE-2018-14719</cve>
+    </suppress>
+    <suppress>
+        <notes>
+            Temporary suppression
+            FasterXML jackson-databind 2.x before 2.9.7 might allow attackers to conduct external XML entity (XXE) attacks by leveraging failure to block unspecified JDK classes from polymorphic deserialization.
+        </notes>
+        <cve>CVE-2018-14720</cve>
+    </suppress>
+    <suppress>
+        <notes>
+            Temporary suppression
+            FasterXML jackson-databind 2.x before 2.9.7 might allow attackers to conduct external XML entity (XXE) attacks by leveraging failure to block unspecified JDK classes from polymorphic deserialization.
+        </notes>
+        <cve>CVE-2018-14721</cve>
+    </suppress>
+    <suppress>
+        <notes>
+            Temporary suppression
+            FasterXML jackson-databind 2.x before 2.9.8 might allow attackers to have unspecified impact by leveraging failure to block the axis2-transport-jms class from polymorphic deserialization.
+        </notes>
+        <cve>CVE-2018-19360</cve>
+    </suppress>
+    <suppress>
+        <notes>
+            Temporary suppression
+            FasterXML jackson-databind 2.x before 2.9.8 might allow attackers to have unspecified impact by leveraging failure to block the openjpa class from polymorphic deserialization.
+        </notes>
+        <cve>CVE-2018-19361</cve>
+    </suppress>
+    <suppress>
+        <notes>
+            Temporary suppression
+            FasterXML jackson-databind 2.x before 2.9.8 might allow attackers to have unspecified impact by leveraging failure to block the jboss-common-core class from polymorphic deserialization.
+        </notes>
+        <cve>CVE-2018-19362</cve>
+    </suppress>
+    <suppress>
+        <notes>
+            Temporary suppression
+            Fasterxml Jackson version Before 2.9.8 contains a CWE-20: Improper Input Validation vulnerability in Jackson-Modules-Java8 that can result in Causes a denial-of-service (DoS).
+            This attack appear to be exploitable via The victim deserializes malicious input, specifically very large values in the nanoseconds field of a time value.
+            This vulnerability appears to have been fixed in 2.9.8.
+        </notes>
+        <cve>CVE-2018-1000873</cve>
+    </suppress>
 </suppressions>
