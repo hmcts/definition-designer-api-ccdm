@@ -1,13 +1,13 @@
 package uk.gov.hmcts.ccd.definitionstore.tests.functional;
 
-import java.util.function.Supplier;
-
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import uk.gov.hmcts.ccd.definitionstore.tests.AATHelper;
 import uk.gov.hmcts.ccd.definitionstore.tests.BaseTest;
+
+import java.util.function.Supplier;
 
 class CaseTypeTest extends BaseTest {
 
@@ -20,23 +20,6 @@ class CaseTypeTest extends BaseTest {
 
     Supplier<RequestSpecification> asUserWithUser = asAutoTestCaseworkerWithUser();
     Supplier<RequestSpecification> asUser = asAutoTestCaseworker();
-
-
-    @Test
-    @DisplayName("Should return case type definition")
-    void shouldReturnCaseTypeDefinition() {
-
-        asUserWithUser.get()
-            .given()
-            .pathParam("jid", JURISDICTION)
-            .pathParam("ctid", CASE_TYPE)
-            .contentType(ContentType.JSON)
-            .when()
-            .get(
-                "/api/data/caseworkers/{user}/jurisdictions/{jid}/case-types/{ctid}")
-            .then()
-            .statusCode(200);
-    }
 
     @Test
     @DisplayName("Should return case types as a list with optional jurisdiction filter")
