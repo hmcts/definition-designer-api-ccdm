@@ -46,7 +46,8 @@ public class DisplayApiController {
     }
 
     @RequestMapping(value = "/display/tab-structure/{id}", method = RequestMethod.GET, produces = {"application/json"})
-    @ApiOperation(value = "Fetch a Case Tab Collection for a given Case Type", notes = "Returns the schema of a single case type.\n", response = CaseTabCollection.class)
+    @ApiOperation(value = "Fetch a Case Tab Collection for a given Case Type",
+                  notes = "Returns the schema of a single case type.\n", response = CaseTabCollection.class)
     @ApiResponses(value = {
         @ApiResponse(code = 200, message = "A Case Tab Collection"),
         @ApiResponse(code = 200, message = "Unexpected error")
@@ -56,8 +57,10 @@ public class DisplayApiController {
         return this.displayService.findTabStructureForCaseType(id);
     }
 
-    @RequestMapping(value = "/display/wizard-page-structure/case-types/{ctid}/event-triggers/{etid}", method = RequestMethod.GET, produces = {"application/json"})
-    @ApiOperation(value = "Fetch a Case Wizard Page Collection for a given Case Type", notes = "Returns the schema of a single case type.\n", response = CaseTabCollection.class)
+    @RequestMapping(value = "/display/wizard-page-structure/case-types/{ctid}/event-triggers/{etid}",
+                    method = RequestMethod.GET, produces = {"application/json"})
+    @ApiOperation(value = "Fetch a Case Wizard Page Collection for a given Case Type",
+                  notes = "Returns the schema of a single case type.\n", response = CaseTabCollection.class)
     @ApiResponses(value = {
         @ApiResponse(code = 200, message = "A Case Wizard Page Collection"),
         @ApiResponse(code = 200, message = "Unexpected error")
