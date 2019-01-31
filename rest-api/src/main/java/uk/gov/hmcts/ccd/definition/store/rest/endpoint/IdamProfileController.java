@@ -19,7 +19,7 @@ class IdamProfileController {
     private final IdamProfileClient idamProfileClient;
 
     @Autowired
-    IdamProfileController(final IdamProfileClient idamProfileService) {
+    public IdamProfileController(final IdamProfileClient idamProfileService) {
         this.idamProfileClient = idamProfileService;
     }
 

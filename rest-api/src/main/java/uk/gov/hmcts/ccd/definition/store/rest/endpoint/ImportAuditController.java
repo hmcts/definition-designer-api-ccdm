@@ -24,7 +24,7 @@ class ImportAuditController {
     private final AzureImportAuditsClient azureImportAuditsClient;
 
     @Autowired
-    ImportAuditController(@Autowired(required = false) final AzureImportAuditsClient azureImportAuditsClient) {
+    public ImportAuditController(@Autowired(required = false) final AzureImportAuditsClient azureImportAuditsClient) {
         this.azureImportAuditsClient = azureImportAuditsClient;
     }
 
@@ -33,7 +33,7 @@ class ImportAuditController {
     @ApiResponses(value = {
         @ApiResponse(code = 200, message = "Import audits")
     })
-    Collection<ImportAudit> fetchAllAudits() throws StorageException {
+    public Collection<ImportAudit> fetchAllAudits() throws StorageException {
         if (null != azureImportAuditsClient) {
             return azureImportAuditsClient.fetchAllImportAudits();
         } else {
