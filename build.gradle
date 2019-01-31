@@ -341,7 +341,7 @@ jar {
                 'Implementation-Version': project.version
     }
     configurations {
-        jar.archiveName = 'case-definition-designer-api.jar'
+        jar.archiveName = 'ccd-definition-designer-api.jar'
     }
 }
 
