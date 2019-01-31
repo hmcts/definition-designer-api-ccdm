@@ -69,7 +69,7 @@ variable "postgresql_user" {
 }
 
 variable "database_name" {
-  default = "ccd_definition_store"
+  default = "ccd_definition_designer"
 }
 
 ////////////////////////////////
