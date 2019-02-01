@@ -7,12 +7,12 @@ services:
       context: .
     image: hmcts/ccd-definition-designer-api
     environment:
-      - DEFINITION_STORE_DB_HOST=ccd-definition-store-database
-      - DEFINITION_STORE_DB_PORT=5432
-      - DEFINITION_STORE_DB_USERNAME
-      - DEFINITION_STORE_DB_PASSWORD
-      - DEFINITION_STORE_IDAM_KEY
-      - DEFINITION_STORE_S2S_AUTHORISED_SERVICES=ccd_data,ccd_gw
+      - DEFINITION_DESIGNER_DB_HOST=ccd-definition-designer-database
+      - DEFINITION_DESIGNER_DB_PORT=5432
+      - DEFINITION_DESIGNER_DB_USERNAME
+      - DEFINITION_DESIGNER_DB_PASSWORD
+      - DEFINITION_DESIGNER_IDAM_KEY
+      - DEFINITION_DESIGNER_S2S_AUTHORISED_SERVICES=ccd_admin,ccd_gw
       - USER_PROFILE_HOST
       - IDAM_USER_URL
       - IDAM_S2S_URL
@@ -22,25 +22,25 @@ services:
     ports:
       - 4454:4454
     depends_on:
-      - ccd-definition-store-database
+      - ccd-definition-designer-database
     links:
-      - ccd-definition-store-database
+      - ccd-definition-designer-database
 
-  ccd-definition-store-database:
+  ccd-definition-designer-database:
     build:
       context: docker/database
-    image: hmcts/ccd-definition-store-database
+    image: hmcts/ccd-definition-designer-database
     healthcheck:
       interval: 10s
       timeout: 10s
       retries: 10
     environment:
-      - DEFINITION_STORE_DB_USERNAME
-      - DEFINITION_STORE_DB_PASSWORD
+      - DEFINITION_DESIGNER_DB_USERNAME
+      - DEFINITION_DESIGNER_DB_PASSWORD
     ports:
-      - 5451:5432
+      - 5453:5432
     volumes:
-      - ccd-definition-store-database-data:/var/lib/postgresql/data
+      - ccd-definition-designer-database-data:/var/lib/postgresql/data
 
 volumes:
-  ccd-definition-store-database-data:
+  ccd-definition-designer-database-data:
