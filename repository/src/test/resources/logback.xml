@@ -15,7 +15,7 @@
 
     <logger name="org.hibernate.SQL" level="DEBUG" />
 
-    <logger name="uk.gov.hmcts.ccd.definition.store.repository" level="DEBUG" />
+    <logger name="uk.gov.hmcts.ccd.definition.designer.repository" level="DEBUG" />
 
     <root level="info">
         <appender-ref ref="STDOUT" />
