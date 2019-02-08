@@ -1,4 +1,4 @@
-package uk.gov.hmcts.ccd.definitionstore.tests;
+package uk.gov.hmcts.ccd.definitiondesigner.tests;
 
 import org.apache.commons.lang3.Validate;
 

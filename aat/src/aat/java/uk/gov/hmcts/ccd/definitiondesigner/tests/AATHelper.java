@@ -1,8 +1,8 @@
-package uk.gov.hmcts.ccd.definitionstore.tests;
+package uk.gov.hmcts.ccd.definitiondesigner.tests;
 
-import uk.gov.hmcts.ccd.definitionstore.tests.helper.S2SHelper;
-import uk.gov.hmcts.ccd.definitionstore.tests.helper.idam.IdamHelper;
-import uk.gov.hmcts.ccd.definitionstore.tests.helper.idam.OAuth2;
+import uk.gov.hmcts.ccd.definitiondesigner.tests.helper.idam.OAuth2;
+import uk.gov.hmcts.ccd.definitiondesigner.tests.helper.S2SHelper;
+import uk.gov.hmcts.ccd.definitiondesigner.tests.helper.idam.IdamHelper;
 
 public enum AATHelper {
 

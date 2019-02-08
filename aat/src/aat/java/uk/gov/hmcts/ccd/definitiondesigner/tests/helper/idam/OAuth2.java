@@ -1,6 +1,6 @@
-package uk.gov.hmcts.ccd.definitionstore.tests.helper.idam;
+package uk.gov.hmcts.ccd.definitiondesigner.tests.helper.idam;
 
-import uk.gov.hmcts.ccd.definitionstore.tests.Env;
+import uk.gov.hmcts.ccd.definitiondesigner.tests.Env;
 
 public enum OAuth2 {
 

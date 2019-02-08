@@ -1,4 +1,4 @@
-package uk.gov.hmcts.ccd.definitionstore.tests.helper.idam;
+package uk.gov.hmcts.ccd.definitiondesigner.tests.helper.idam;
 
 import java.util.List;
 

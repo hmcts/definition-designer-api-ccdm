@@ -1,9 +1,9 @@
-package uk.gov.hmcts.ccd.definitionstore.tests;
+package uk.gov.hmcts.ccd.definitiondesigner.tests;
 
 import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.extension.ExtendWith;
-import uk.gov.hmcts.ccd.definitionstore.tests.helper.idam.AuthenticatedUser;
+import uk.gov.hmcts.ccd.definitiondesigner.tests.helper.idam.AuthenticatedUser;
 
 import java.util.function.Supplier;
 

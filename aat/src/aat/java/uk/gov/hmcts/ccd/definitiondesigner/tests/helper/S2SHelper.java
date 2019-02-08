@@ -1,4 +1,4 @@
-package uk.gov.hmcts.ccd.definitionstore.tests.helper;
+package uk.gov.hmcts.ccd.definitiondesigner.tests.helper;
 
 import feign.Feign;
 import feign.jackson.JacksonEncoder;
