@@ -9,6 +9,8 @@ import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 
+import static java.nio.charset.Charset.defaultCharset;
+
 public class IdamHelper {
 
     private static final String AUTHORIZATION_CODE = "authorization_code";
@@ -40,7 +42,7 @@ public class IdamHelper {
 
     public String getIdamOauth2Token(String username, String password) {
         String authorisation = username + ":" + password;
-        String base64Authorisation = Base64.getEncoder().encodeToString(authorisation.getBytes());
+        String base64Authorisation = Base64.getEncoder().encodeToString(authorisation.getBytes(defaultCharset()));
 
         IdamApi.AuthenticateUserResponse authenticateUserResponse = idamApi.authenticateUser(
             BASIC + base64Authorisation,
