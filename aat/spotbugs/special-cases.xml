@@ -1,0 +1,8 @@
+<FindBugsFilter>
+    <Match>
+        <!-- For Write to static field io.restassured.RestAssured.baseURI from instance method new
+        uk.gov.hmcts.ccd.definitiondesigner.tests.BaseTest(AATHelper) -->
+        <Class name="uk.gov.hmcts.ccd.definitiondesigner.tests.BaseTest" />
+        <Bug code="ST"/>
+    </Match>
+</FindBugsFilter>
