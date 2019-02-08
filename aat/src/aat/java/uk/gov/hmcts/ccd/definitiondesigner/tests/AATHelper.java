@@ -59,8 +59,4 @@ public enum AATHelper {
     public S2SHelper getS2SHelper() {
         return s2SHelper;
     }
-
-    public String getElasticsearchBaseUri() {
-        return Env.require("ELASTIC_SEARCH_SCHEME") + "://" + Env.require("ELASTIC_SEARCH_HOST") + ":" + Env.require("ELASTIC_SEARCH_PORT");
-    }
 }

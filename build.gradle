@@ -280,11 +280,6 @@ subprojects {
             html.enabled = true
         }
     }
-
-// Delete me once there is no more bug
-    spotbugs {
-        ignoreFailures = true
-    }
 }
 
 sourceCompatibility = 1.8
