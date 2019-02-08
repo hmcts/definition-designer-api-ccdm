@@ -1,0 +1,79 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="RDM-3953" author="Adrian Cho">
+
+        <!--
+        This script assumes that we do not have data in this database and drop tables inherited from ccd-definition-store-api
+        -->
+
+        <dropTable cascadeConstraints="true"
+                   tableName="case_type"/>
+
+        <dropTable cascadeConstraints="true"
+                   tableName="case_type_acl"/>
+
+        <dropTable cascadeConstraints="true"
+                   tableName="case_field"/>
+
+        <dropTable cascadeConstraints="true"
+                   tableName="case_field_acl"/>
+
+        <dropTable cascadeConstraints="true"
+                   tableName="display_group_case_field"/>
+
+        <dropTable cascadeConstraints="true"
+                   tableName="display_group"/>
+
+        <dropTable cascadeConstraints="true"
+                   tableName="event"/>
+
+        <dropTable cascadeConstraints="true"
+                   tableName="event_acl"/>
+
+        <dropTable cascadeConstraints="true"
+                   tableName="event_case_field"/>
+
+        <dropTable cascadeConstraints="true"
+                   tableName="event_pre_state"/>
+
+        <dropTable cascadeConstraints="true"
+                   tableName="field_type"/>
+
+        <dropTable cascadeConstraints="true"
+                   tableName="field_type_list_item"/>
+
+        <dropTable cascadeConstraints="true"
+                   tableName="role"/>
+
+        <dropTable cascadeConstraints="true"
+                   tableName="search_alias_field"/>
+
+        <dropTable cascadeConstraints="true"
+                   tableName="search_input_case_field"/>
+
+        <dropTable cascadeConstraints="true"
+                   tableName="search_result_case_field"/>
+
+        <dropTable cascadeConstraints="true"
+                   tableName="state"/>
+
+        <dropTable cascadeConstraints="true"
+                   tableName="state_acl"/>
+
+        <dropTable cascadeConstraints="true"
+                   tableName="webhook"/>
+
+        <dropTable cascadeConstraints="true"
+                   tableName="webhook_timeout"/>
+
+        <dropTable cascadeConstraints="true"
+                   tableName="workbasket_case_field"/>
+
+        <dropTable cascadeConstraints="true"
+                   tableName="workbasket_input_case_field"/>
+
+    </changeSet>
+
+</databaseChangeLog>
