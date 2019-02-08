@@ -102,8 +102,8 @@ allprojects {
     }
 
     checkstyle {
-        maxWarnings = 156  // In the Ideal world this should be 0
-        toolVersion = '8.12'
+        maxWarnings = 0
+        toolVersion = '8.17'
         configDir = new File(rootDir, 'config/checkstyle')
     }
 
@@ -269,8 +269,8 @@ subprojects {
     check.dependsOn jacocoTestReport
 
     checkstyle {
-        maxWarnings = 999  // In the Ideal world this should be 0
-        toolVersion = '8.12'
+        maxWarnings = 0
+        toolVersion = '8.17'
         configDir = new File(rootDir, 'config/checkstyle')
     }
 

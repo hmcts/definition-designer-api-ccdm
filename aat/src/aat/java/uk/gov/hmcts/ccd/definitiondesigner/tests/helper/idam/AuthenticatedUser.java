@@ -1,7 +1,10 @@
 package uk.gov.hmcts.ccd.definitiondesigner.tests.helper.idam;
 
+import lombok.ToString;
+
 import java.util.List;
 
+@ToString
 public class AuthenticatedUser {
 
     private final String id;
@@ -30,15 +33,5 @@ public class AuthenticatedUser {
 
     public List<String> getRoles() {
         return roles;
-    }
-
-    @Override
-    public String toString() {
-        return "AuthenticatedUser{" +
-            "id='" + id + '\'' +
-            ", email='" + email + '\'' +
-            ", accessToken='" + accessToken + '\'' +
-            ", roles=" + roles +
-            '}';
     }
 }

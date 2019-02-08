@@ -201,10 +201,11 @@ class DefinitionServiceImplTest {
         when(mapper.toModel(definitionEntity2)).thenReturn(persistedModel);
         when(mapper.toModel(definitionEntity3)).thenReturn(definition2);
         final List<Definition> found = classUnderTest.findByJurisdictionId("xyz");
-        assertAll(() -> assertThat(found.size(), is(3)),
-                  () -> assertThat(found.get(0), is(definition)),
-                  () -> assertThat(found.get(1), is(persistedModel)),
-                  () -> assertThat(found.get(2), is(definition2)));
+        assertAll(
+            () -> assertThat(found.size(), is(3)),
+            () -> assertThat(found.get(0), is(definition)),
+            () -> assertThat(found.get(1), is(persistedModel)),
+            () -> assertThat(found.get(2), is(definition2)));
     }
 
     @Test

@@ -1,15 +1,5 @@
 package uk.gov.hmcts.ccd.definition.designer.repository;
 
-import java.util.List;
-
-import static com.google.common.collect.Lists.newArrayList;
-import static org.hamcrest.Matchers.hasItem;
-import static org.hamcrest.Matchers.hasProperty;
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
-import static org.junit.jupiter.api.Assertions.assertAll;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,6 +9,16 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 import uk.gov.hmcts.ccd.definition.designer.repository.entity.JurisdictionEntity;
+
+import java.util.List;
+
+import static com.google.common.collect.Lists.newArrayList;
+import static org.hamcrest.Matchers.hasItem;
+import static org.hamcrest.Matchers.hasProperty;
+import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {
@@ -65,11 +65,11 @@ public class JurisdictionRepositoryTest {
         List<JurisdictionEntity> result = jurisdictionRepository.findAllLatestVersion();
 
         assertAll(
-                () -> assertThat(result, hasSize(4)),
-                () -> assertThat(result, hasItem(hasProperty("name", is("name1.2")))),
-                () -> assertThat(result, hasItem(hasProperty("name", is("name2")))),
-                () -> assertThat(result, hasItem(hasProperty("name", is("name3")))),
-                () -> assertThat(result, hasItem(hasProperty("name", is("name4.3"))))
+            () -> assertThat(result, hasSize(4)),
+            () -> assertThat(result, hasItem(hasProperty("name", is("name1.2")))),
+            () -> assertThat(result, hasItem(hasProperty("name", is("name2")))),
+            () -> assertThat(result, hasItem(hasProperty("name", is("name3")))),
+            () -> assertThat(result, hasItem(hasProperty("name", is("name4.3"))))
         );
     }
 

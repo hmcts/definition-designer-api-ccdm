@@ -8,7 +8,8 @@ import org.springframework.data.domain.Sort;
 import java.io.Serializable;
 import java.util.List;
 
-abstract class AbstractDefinitionRepositoryDecorator<T, ID extends Serializable, R extends DefinitionRepository<T, ID>> implements DefinitionRepository<T, ID> {
+abstract class AbstractDefinitionRepositoryDecorator<T, I extends Serializable, R extends DefinitionRepository<T, I>>
+    implements DefinitionRepository<T, I> {
 
     protected R repository;
 
@@ -16,10 +17,14 @@ abstract class AbstractDefinitionRepositoryDecorator<T, ID extends Serializable,
         this.repository = repository;
     }
 
-    /*FORWARDING METHODS*/
     @Override
     public <S extends T> S save(S s) {
         return repository.save(s);
+    }
+
+    @Override
+    public <S extends T> List<S> save(Iterable<S> iterable) {
+        return repository.save(iterable);
     }
 
     @Override
@@ -38,8 +43,23 @@ abstract class AbstractDefinitionRepositoryDecorator<T, ID extends Serializable,
     }
 
     @Override
-    public List<T> findAll(Iterable<ID> iterable) {
+    public List<T> findAll(Iterable<I> iterable) {
         return repository.findAll(iterable);
+    }
+
+    @Override
+    public <S extends T> List<S> findAll(Example<S> example) {
+        return repository.findAll(example);
+    }
+
+    @Override
+    public <S extends T> List<S> findAll(Example<S> example, Sort sort) {
+        return repository.findAll(example, sort);
+    }
+
+    @Override
+    public <S extends T> Page<S> findAll(Example<S> example, Pageable pageable) {
+        return repository.findAll(example, pageable);
     }
 
     @Override
@@ -48,7 +68,12 @@ abstract class AbstractDefinitionRepositoryDecorator<T, ID extends Serializable,
     }
 
     @Override
-    public void delete(ID id) {
+    public <S extends T> long count(Example<S> example) {
+        return repository.count(example);
+    }
+
+    @Override
+    public void delete(I id) {
         repository.delete(id);
     }
 
@@ -68,18 +93,23 @@ abstract class AbstractDefinitionRepositoryDecorator<T, ID extends Serializable,
     }
 
     @Override
-    public <S extends T> List<S> save(Iterable<S> iterable) {
-        return repository.save(iterable);
-    }
-
-    @Override
-    public T findOne(ID id) {
+    public T findOne(I id) {
         return repository.findOne(id);
     }
 
     @Override
-    public boolean exists(ID id) {
+    public <S extends T> S findOne(Example<S> example) {
+        return repository.findOne(example);
+    }
+
+    @Override
+    public boolean exists(I id) {
         return repository.exists(id);
+    }
+
+    @Override
+    public <S extends T> boolean exists(Example<S> example) {
+        return repository.exists(example);
     }
 
     @Override
@@ -103,38 +133,7 @@ abstract class AbstractDefinitionRepositoryDecorator<T, ID extends Serializable,
     }
 
     @Override
-    public T getOne(ID id) {
+    public T getOne(I id) {
         return repository.getOne(id);
     }
-
-    @Override
-    public <S extends T> S findOne(Example<S> example) {
-        return repository.findOne(example);
-    }
-
-    @Override
-    public <S extends T> List<S> findAll(Example<S> example) {
-        return repository.findAll(example);
-    }
-
-    @Override
-    public <S extends T> List<S> findAll(Example<S> example, Sort sort) {
-        return repository.findAll(example, sort);
-    }
-
-    @Override
-    public <S extends T> Page<S> findAll(Example<S> example, Pageable pageable) {
-        return repository.findAll(example, pageable);
-    }
-
-    @Override
-    public <S extends T> long count(Example<S> example) {
-        return repository.count(example);
-    }
-
-    @Override
-    public <S extends T> boolean exists(Example<S> example) {
-        return repository.exists(example);
-    }
-
 }

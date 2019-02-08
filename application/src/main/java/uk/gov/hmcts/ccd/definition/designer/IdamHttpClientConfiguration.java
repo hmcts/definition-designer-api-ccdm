@@ -23,12 +23,12 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 
 @Configuration
-public class IDAMHttpClientConfiguration {
+public class IdamHttpClientConfiguration {
 
     private HttpClient idamHttpClient;
 
-    public IDAMHttpClientConfiguration(@Value("${auth.log.unsuccessful.auth.details}") boolean logUnsuccessfulAuthDetails) {
-        this.idamHttpClient = new LoggingHTTPClient(logUnsuccessfulAuthDetails);
+    public IdamHttpClientConfiguration(@Value("${auth.log.unsuccessful.auth.details}") boolean logUnsuccessfulAuthDetails) {
+        this.idamHttpClient = new LoggingHttpClient(logUnsuccessfulAuthDetails);
     }
 
     @Bean
@@ -46,15 +46,15 @@ public class IDAMHttpClientConfiguration {
         return idamHttpClient;
     }
 
-    private static class LoggingHTTPClient implements HttpClient {
+    private static class LoggingHttpClient implements HttpClient {
 
         private static final HttpClient WRAPPED_CLIENT = HttpClients.createDefault();
 
-        private static final Logger LOG = LoggerFactory.getLogger(LoggingHTTPClient.class);
+        private static final Logger LOG = LoggerFactory.getLogger(LoggingHttpClient.class);
 
         private boolean logBadTokenResponse;
 
-        public LoggingHTTPClient(boolean logBadTokenResponse) {
+        public LoggingHttpClient(boolean logBadTokenResponse) {
             this.logBadTokenResponse = logBadTokenResponse;
         }
 
@@ -141,7 +141,10 @@ public class IDAMHttpClientConfiguration {
         }
 
         @Override
-        public <T> T execute(HttpHost httpHost, HttpRequest httpRequest, ResponseHandler<? extends T> responseHandler, HttpContext httpContext) throws IOException {
+        public <T> T execute(HttpHost httpHost,
+                             HttpRequest httpRequest,
+                             ResponseHandler<? extends T> responseHandler,
+                             HttpContext httpContext) throws IOException {
             try {
                 return WRAPPED_CLIENT.execute(httpHost, httpRequest, loggingResponseHandler(responseHandler, httpRequest), httpContext);
             } catch (IOException e) {
@@ -173,8 +176,8 @@ public class IDAMHttpClientConfiguration {
                     .stream()
                     .map(header -> String.format("%s : %s%n", header.getName(), header.getValue()))
                     .collect(Collectors.joining()),
-                httpRequest instanceof HttpPost ?
-                    String.format(
+                httpRequest instanceof HttpPost
+                    ? String.format(
                         "Request Body %n-------%n%s-------%n",
                         EntityUtils.toString(((HttpPost) httpRequest).getEntity())
                     ) : "",
@@ -194,8 +197,7 @@ public class IDAMHttpClientConfiguration {
                                               );
                 try {
                     LOG.info(detailedLogMessage(message, httpRequest, response));
-                }
-                catch (Exception e) {
+                } catch (Exception e) {
                     LOG.info("{}. Exception occurred when creating detailed message", message, e);
                 }
             }

@@ -50,6 +50,7 @@ public class TestConfiguration extends ContextCleanupListener {
             ResourcePropertySource localPropertySource = new ResourcePropertySource(localPropertiesPath);
             environment.getPropertySources().addFirst(localPropertySource);
         } catch (IOException ignored) {
+            LOG.error("Caught exception {}", ignored, ignored);
         }
     }
 
