@@ -33,7 +33,7 @@ apply plugin: 'org.owasp.dependencycheck'
 apply plugin: 'pmd'
 apply from: 'liquibase.gradle'
 
-mainClassName = 'uk.gov.hmcts.ccd.definition.store.CaseDataAPIApplication'
+mainClassName = 'uk.gov.hmcts.ccd.definition.designer.DefinitionDesignerApiApplication'
 
 // https://jeremylong.github.io/DependencyCheck/dependency-check-gradle/configuration.html
 dependencyCheck {
@@ -295,9 +295,9 @@ sonarqube {
         property "sonar.junit.reportPaths", 'build/test-results/junit-platform'
         property "sonar.jacoco.reportPaths", "${project.buildDir}/jacoco/junitPlatformTest.exec"
         property "sonar.exclusions", "**/entity/*.java,**/model/*.java,**/repository/ClassUserType.java,**/repository/GeneralImmutableJsonType.java,**/AbstractDefinitionRepositoryDecorator.java,**/data/*Data.java,**/ControllerExceptionHandler.java,**/GenericLayoutEntityValidatorImpl.java,**/JurisdictionServiceImpl.java"
-        property "sonar.cpd.exclusions", "**/entity/*.java,**/model/*.java,**/repository/ClassUserType.java,**/repository/GeneralImmutableJsonType.java"
-        property "sonar.jacoco.excludes", "**/entity/*.java,**/model/*.java,**/repository/ClassUserType.java,**/repository/GeneralImmutableJsonType.java,**/AbstractDefinitionRepositoryDecorator.java,**/data/*Data.java,**/*Controller.java,**/WorkBasketUserDefaultService.java,**/*Exception.java,**/ControllerExceptionHandler.java,**/GenericLayoutEntityValidatorImpl.java,**/JurisdictionServiceImpl.java"
-        property "sonar.coverage.exclusions", "**/entity/*.java,**/model/*.java,**/repository/ClassUserType.java,**/repository/GeneralImmutableJsonType.java,**/AbstractDefinitionRepositoryDecorator.java,**/data/*Data.java,**/*Controller.java,**/WorkBasketUserDefaultService.java,**/*Exception.java,**/CaseTypeItem.java,**/ApplicationParams.java,**/CaseTypePresentationControllerService.java,**/DisplayService.java,**/DisplayItemAdapterService.java,**/DisplayApiPresentationControllerService.java,**/ControllerExceptionHandler.java,**/GenericLayoutEntityValidatorImpl.java,**/JurisdictionServiceImpl.java"
+        property "sonar.cpd.exclusions", "**/entity/*.java,**/model/*.java,**/repository/ClassUserType.java,**/repository/GeneralImmutableJsonType.java,**/*Application.java,**/HikariConfigurationPropertiesReportEndpoint.java,**/IDAMHttpClientConfiguration.java"
+        property "sonar.jacoco.excludes", "**/entity/*.java,**/model/*.java,**/repository/ClassUserType.java,**/repository/GeneralImmutableJsonType.java,**/AbstractDefinitionRepositoryDecorator.java,**/data/*Data.java,**/*Controller.java,**/WorkBasketUserDefaultService.java,**/*Exception.java,**/ControllerExceptionHandler.java,**/GenericLayoutEntityValidatorImpl.java,**/JurisdictionServiceImpl.java,**/*Application.java,**/HikariConfigurationPropertiesReportEndpoint.java,**/IDAMHttpClientConfiguration.java"
+        property "sonar.coverage.exclusions", "**/entity/*.java,**/model/*.java,**/repository/ClassUserType.java,**/repository/GeneralImmutableJsonType.java,**/AbstractDefinitionRepositoryDecorator.java,**/data/*Data.java,**/*Controller.java,**/WorkBasketUserDefaultService.java,**/*Exception.java,**/CaseTypeItem.java,**/ApplicationParams.java,**/CaseTypePresentationControllerService.java,**/DisplayService.java,**/DisplayItemAdapterService.java,**/DisplayApiPresentationControllerService.java,**/ControllerExceptionHandler.java,**/GenericLayoutEntityValidatorImpl.java,**/JurisdictionServiceImpl.java,**/*Application.java,**/HikariConfigurationPropertiesReportEndpoint.java,**/IDAMHttpClientConfiguration.java"
         property "sonar.projectName", "ccd-definition-designer-api"
         property "sonar.projectKey", "ccd-definition-designer-api"
     }

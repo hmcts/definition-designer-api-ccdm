@@ -18,7 +18,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.context.ContextCleanupListener;
-import uk.gov.hmcts.ccd.definition.store.CaseDataAPIApplication;
+import uk.gov.hmcts.ccd.definition.designer.DefinitionDesignerApiApplication;
 
 import javax.annotation.PreDestroy;
 import javax.sql.DataSource;
@@ -35,7 +35,7 @@ import static org.hamcrest.Matchers.not;
 
 @ActiveProfiles("test")
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = {CaseDataAPIApplication.class},
+@SpringBootTest(classes = {DefinitionDesignerApiApplication.class},
                 webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureWireMock(port = 0)
 @TestPropertySource(locations = "classpath:integration_tests.properties")
