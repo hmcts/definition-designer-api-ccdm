@@ -17,13 +17,11 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import uk.gov.hmcts.ccd.definition.designer.domain.ApplicationParams;
-import uk.gov.hmcts.ccd.definition.designer.excel.UserRoleSetup;
 import uk.gov.hmcts.ccd.definition.designer.repository.SecurityUtils;
 import uk.gov.hmcts.ccd.definition.designer.rest.model.IdamProperties;
 
 import javax.inject.Inject;
 import javax.sql.DataSource;
-import java.util.Map;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -47,7 +45,6 @@ public abstract class BaseTest {
 
     protected MockMvc mockMvc;
     protected JdbcTemplate jdbcTemplate;
-    protected Map<String, Integer> userRoleIds;
 
     protected static final ObjectMapper mapper = new ObjectMapper();
 
@@ -70,7 +67,5 @@ public abstract class BaseTest {
         final IdamProperties idamProperties = new IdamProperties();
         idamProperties.setId("445");
         idamProperties.setEmail("user@hmcts.net");
-
-        userRoleIds = new UserRoleSetup(jdbcTemplate).addUserRoleTestData();
     }
 }
