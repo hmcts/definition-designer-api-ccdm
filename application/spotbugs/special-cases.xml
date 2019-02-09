@@ -1,0 +1,6 @@
+<FindBugsFilter>
+    <Match>
+        <Class name="uk.gov.hmcts.ccd.definition.designer.BaseTest"/>
+        <Bug code="UrF"/>
+    </Match>
+</FindBugsFilter>

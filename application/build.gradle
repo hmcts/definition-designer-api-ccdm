@@ -23,3 +23,8 @@ dependencies {
     runtime "org.liquibase:liquibase-core"
     testCompile project(":app-insights").sourceSets.main.output
 }
+
+// TODO Review exclusions list after code clean up
+spotbugs {
+    excludeFilter = file("spotbugs/special-cases.xml")
+}
