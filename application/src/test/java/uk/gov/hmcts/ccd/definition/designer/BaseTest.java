@@ -18,7 +18,6 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import uk.gov.hmcts.ccd.definition.designer.domain.ApplicationParams;
 import uk.gov.hmcts.ccd.definition.designer.repository.SecurityUtils;
-import uk.gov.hmcts.ccd.definition.designer.rest.model.IdamProperties;
 
 import javax.inject.Inject;
 import javax.sql.DataSource;
@@ -60,12 +59,7 @@ public abstract class BaseTest {
     public void setUp() {
         mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
         jdbcTemplate = new JdbcTemplate(db);
-        final Integer port = wireMockRule.port();
         final SecurityUtils securityUtils = mock(SecurityUtils.class);
         when(securityUtils.authorizationHeaders()).thenReturn(new HttpHeaders());
-
-        final IdamProperties idamProperties = new IdamProperties();
-        idamProperties.setId("445");
-        idamProperties.setEmail("user@hmcts.net");
     }
 }

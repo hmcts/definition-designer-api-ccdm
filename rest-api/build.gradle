@@ -21,3 +21,7 @@ dependencies {
 bootRepackage {
     enabled = false
 }
+
+spotbugs {
+    excludeFilter = file("spotbugs/special-cases.xml")
+}

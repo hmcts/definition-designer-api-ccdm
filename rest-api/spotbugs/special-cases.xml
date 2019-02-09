@@ -1,0 +1,7 @@
+<FindBugsFilter>
+    <!-- Vulnerability for an object with getters and setters -->
+    <Match>
+        <Class name="uk.gov.hmcts.ccd.definition.designer.rest.model.IdamProperties"/>
+        <Bug code="EI,EI2"/>
+    </Match>
+</FindBugsFilter>

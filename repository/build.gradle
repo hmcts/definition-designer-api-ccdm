@@ -29,3 +29,7 @@ dependencies {
     testCompile "org.assertj:assertj-core"
     compile group: 'com.vladmihalcea', name: 'hibernate-types-52', version: '2.3.2'
 }
+
+spotbugs {
+    excludeFilter = file("spotbugs/special-cases.xml")
+}
