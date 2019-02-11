@@ -72,8 +72,8 @@ class ControllerExceptionHandlerTest {
     }
 
     @Nested
-    @DisplayName("handleIOException()")
-    class HandleIOException {
+    @DisplayName("handle IO Exception")
+    class HandleIoExceptionCase {
         @Test
         @DisplayName("should return error details as map")
         void shouldReturnErrorDetailsAsMap() {

@@ -1,5 +1,17 @@
 package uk.gov.hmcts.ccd.definition.designer.domain.service;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentCaptor;
+import uk.gov.hmcts.ccd.definition.designer.domain.exception.DuplicateUserRoleException;
+import uk.gov.hmcts.ccd.definition.designer.domain.exception.NotFoundException;
+import uk.gov.hmcts.ccd.definition.designer.repository.SecurityClassification;
+import uk.gov.hmcts.ccd.definition.designer.repository.UserRoleRepository;
+import uk.gov.hmcts.ccd.definition.designer.repository.entity.UserRoleEntity;
+import uk.gov.hmcts.ccd.definition.designer.repository.model.UserRole;
+
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Collections;
@@ -12,21 +24,14 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.anyString;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
 import static uk.gov.hmcts.ccd.definition.designer.repository.SecurityClassification.PUBLIC;
 import static uk.gov.hmcts.ccd.definition.designer.repository.SecurityClassification.RESTRICTED;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
-import org.mockito.ArgumentCaptor;
-import uk.gov.hmcts.ccd.definition.designer.domain.exception.DuplicateUserRoleException;
-import uk.gov.hmcts.ccd.definition.designer.domain.exception.NotFoundException;
-import uk.gov.hmcts.ccd.definition.designer.repository.SecurityClassification;
-import uk.gov.hmcts.ccd.definition.designer.repository.UserRoleRepository;
-import uk.gov.hmcts.ccd.definition.designer.repository.entity.UserRoleEntity;
-import uk.gov.hmcts.ccd.definition.designer.repository.model.UserRole;
 
 class UserRoleServiceImplTest {
 
@@ -168,11 +173,10 @@ class UserRoleServiceImplTest {
         }
 
         @Test
-        @DisplayName("should throw exception when role duplicate role is being saved")
-        void shouldThrowExceptionwhenCreateRole() {
+        @DisplayName("should throw an exception when duplicate role is being saved")
+        void shouldThrowExceptionWhenCreateRole() {
 
             final String role = "create";
-            final ArgumentCaptor<UserRoleEntity> argumentCaptor = ArgumentCaptor.forClass(UserRoleEntity.class);
             final UserRoleEntity savedEntity = mock(UserRoleEntity.class);
 
             givenUserRole(role, PUBLIC);

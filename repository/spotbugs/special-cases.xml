@@ -1,0 +1,28 @@
+<FindBugsFilter>
+    <Match>
+        <!-- Bad practice inherited from ccd-definition-store-api
+        Class uk.gov.hmcts.ccd.definition.designer.repository.entity.DefinitionEntity defines
+        non-transient non-serializable instance field data
+        Bug type SE_BAD_FIELD (click for details)
+        In class uk.gov.hmcts.ccd.definition.designer.repository.entity.DefinitionEntity
+        Field uk.gov.hmcts.ccd.definition.designer.repository.entity.DefinitionEntity.data
+        Actual type com.fasterxml.jackson.databind.JsonNode
+        In DefinitionEntity.java
+        -->
+        <Class name="uk.gov.hmcts.ccd.definition.designer.repository.entity.DefinitionEntity"/>
+        <Bug code="Se"/>
+    </Match>
+    <!-- Vulnerability inherited from ccd-definition-store-api -->
+    <Match>
+        <Class name="uk.gov.hmcts.ccd.definition.designer.repository.entity.JurisdictionEntity"/>
+        <Bug code="EI,EI2"/>
+    </Match>
+    <Match>
+        <Class name="uk.gov.hmcts.ccd.definition.designer.repository.model.Version"/>
+        <Bug code="EI,EI2"/>
+    </Match>
+    <Match>
+        <Class name="uk.gov.hmcts.ccd.definition.designer.repository.model.Jurisdiction"/>
+        <Bug code="EI,EI2"/>
+    </Match>
+</FindBugsFilter>
