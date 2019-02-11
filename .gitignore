@@ -22,12 +22,8 @@ hs_err_pid*
 # IntelliJ IDEA files
 .idea/
 *.iml
-/core-case-data/case-definition-api/target
-/core-case-data/case-definition-api-client/target
 
 .DS_Store
-
-application/src/test/resources/test-local-override.properties
 
 .gradle/
 build/

@@ -2,7 +2,6 @@
 [![API Docs](https://img.shields.io/badge/API%20Docs-site-e140ad.svg)](https://hmcts.github.io/reform-api-docs/swagger.html?url=https://hmcts.github.io/reform-api-docs/specs/ccd-definition-designer-api.json)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Build Status](https://api.travis-ci.org/hmcts/ccd-definition-designer-api.svg?branch=master)](https://travis-ci.org/hmcts/ccd-definition-designer-api)
-[![Docker Build Status](https://img.shields.io/docker/build/hmcts/ccd-definition-designer-api.svg)](https://hub.docker.com/r/hmcts/ccd-definition-designer-api)
 [![codecov](https://codecov.io/gh/hmcts/ccd-definition-designer-api/branch/master/graph/badge.svg)](https://codecov.io/gh/hmcts/ccd-definition-designer-api)
 [![HitCount](http://hits.dwyl.io/hmcts/ccd-definition-designer-api.svg)](#ccd-definition-designer-api)
 
@@ -10,13 +9,9 @@ Validation and persistence of definitions for field types, jurisdictions, case t
 
 ## Overview
 
-Definitions are imported as an Excel spreadsheet which are parsed, persisted and then exposed as JSON through a REST API.
+A microservice for definition designer.
 
 Spring Boot and Spring Data are used to persist the data in a PostgreSQL database. The database schema is created and maintained by Liquibase changesets applied during application startup.
-
-Moreover, if the feature is enabled, the ElasticSearch cluster is initialised when a definition file is imported. For each case type, an index, an alias, 
-and a mapping is created on ElasticSearch. If `failOnImport` is true, any ES initialisation error will prevent the import to succeed. If false, ES errors are
-simply ignored
 
 ## Getting started
 
@@ -38,7 +33,6 @@ The following environment variables are required:
 | DEFINITION_DESIGNER_S2S_AUTHORISED_SERVICES | ccd_gw,ccd_admin | Authorised micro-service names for S2S calls |
 | IDAM_USER_URL | - | Base URL for IdAM's User API service (idam-app). `http://localhost:4501` for the dockerised local instance or tunneled `dev` instance. |
 | IDAM_S2S_URL | - | Base URL for IdAM's S2S API service (service-auth-provider). `http://localhost:4502` for the dockerised local instance or tunneled `dev` instance. |
-| USER_PROFILE_HOST | - | Base URL for the User Profile service. `http://localhost:4453` for the dockerised local instance. |
 | APPINSIGHTS_INSTRUMENTATIONKEY | - | secrets for Microsoft Insights logging, can be a dummy string in local |
 
 ### Building
@@ -78,13 +72,13 @@ As a result the following containers will get created and started:
  - Database exposing port `5000`
  - API exposing ports `4454`
 
-#### Handling database
+#### Database Handling
 
 Database will get initiated when you run `docker-compose up` for the first time by execute all scripts from `database` directory.
 
-You don't need to migrate database manually since migrations are executed every time `docker-compose up` is executed.
+You don't need to migrate database manually.
 
-You can connect to the database at `http://localhost:5453` with the username and password set in the environment variables.
+You can connect to the database at `http://localhost:5000` with the username and password set in the environment variables.
 
 ## Modules
 
@@ -96,15 +90,11 @@ Data access layer.
 
 ### domain
 
-Domain logic.
+Domain and model objects .
 
 ### rest-api
 
-Secured RESTful API giving access to part of the domain logic.
-
-### excel-importer
-
-Secured endpoint and specific logic for importing case definition as an Excel spreadsheet.
+Secured RESTful API layer.
 
 ### application
 
@@ -113,4 +103,3 @@ Spring application entry point and configuration.
 ## LICENSE
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE.md) file for details.
-
