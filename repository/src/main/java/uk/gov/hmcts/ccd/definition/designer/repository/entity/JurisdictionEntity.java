@@ -1,5 +1,6 @@
 package uk.gov.hmcts.ccd.definition.designer.repository.entity;
 
+import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.Column;
@@ -15,6 +16,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 @Table(name = "jurisdiction")
 @Entity
+@ToString
 public class JurisdictionEntity implements Serializable, Versionable {
 
     @Id
@@ -98,19 +100,5 @@ public class JurisdictionEntity implements Serializable, Versionable {
 
     public void setLiveTo(final Date liveTo) {
         this.liveTo = liveTo;
-    }
-
-    @Override
-    public String toString() {
-        return "JurisdictionEntity{" +
-                "id=" + id +
-                ", createdAt=" + createdAt +
-                ", reference='" + reference + '\'' +
-                ", version=" + version +
-                ", liveFrom=" + liveFrom +
-                ", liveTo=" + liveTo +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                '}';
     }
 }
