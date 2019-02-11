@@ -21,20 +21,10 @@ bootRepackage {
     enabled = false
 }
 
-ext {
-    mapstructGenSourceDir = 'build/classes/java/main'
-    orgMapstructVersion='1.2.0.Final'
-}
-
 dependencies {
     compile project(':app-insights')
-    compile (project(':repository')) {
-        exclude group: 'org.mapstruct', module: 'mapstruct'
-    }
+    compile (project(':repository'))
     compile "org.apache.commons:commons-lang3"
-    compile group: 'commons-validator', name: 'commons-validator', version: '1.6'
-    compile "org.mapstruct:mapstruct-jdk8:${orgMapstructVersion}"
-    compileOnly "org.mapstruct:mapstruct-processor:${orgMapstructVersion}"
     testCompile project(":app-insights").sourceSets.main.output
     testCompile project(":repository").sourceSets.test.output
 }
