@@ -9,7 +9,7 @@ Validation and persistence of definitions for field types, jurisdictions, case t
 
 ## Overview
 
-A microservice for definition designer.
+`CCD Definition Designer` is a service that allows CRUD operations on draft Definitions.
 
 Spring Boot and Spring Data are used to persist the data in a PostgreSQL database. The database schema is created and maintained by Liquibase changesets applied during application startup.
 
