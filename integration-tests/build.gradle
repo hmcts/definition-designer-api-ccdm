@@ -17,14 +17,15 @@ dependencies {
     testCompile "org.springframework.boot:spring-boot-starter-actuator"
     testCompile "io.springfox:springfox-swagger2:${springfoxSwaggerVersion}"
     testCompile "io.springfox:springfox-swagger-ui:${springfoxSwaggerVersion}"
-    testCompile group: 'org.postgresql', name: 'postgresql', version: '42.2.2'
+    testCompile "org.postgresql:postgresql:${postgresqlVersion}"
 }
 
 // To help obscure gradle problem
+// if src/main/java exists, then we won't need this construct
 sourceSets {
     test {
         java {
-            include '../excel-importer/src/main/java/**'
+            include 'src/main/java/**'
         }
     }
 }

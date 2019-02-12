@@ -56,22 +56,21 @@ abstract class IntegrationTest {
         private EmbeddedPostgres pg;
         private static final Logger LOG = LoggerFactory.getLogger(Configuration.class);
 
-        @Bean
-        public DataSource dataSource() throws IOException, SQLException {
-
-            pg = EmbeddedPostgres
-                .builder()
-                .setPort(0)
-                .start();
-            return dataSource(pg);
-        }
-
         @PreDestroy
         public void contextDestroyed() throws IOException {
             if (null != pg) {
                 LOG.info("Closing down Postgres, port number = {}", pg.getPort());
                 pg.close();
             }
+        }
+
+        @Bean
+        public DataSource dataSource() throws IOException, SQLException {
+            pg = EmbeddedPostgres
+                .builder()
+                .setPort(0)
+                .start();
+            return dataSource(pg);
         }
 
         private DataSource dataSource(final EmbeddedPostgres pg) throws SQLException {

@@ -15,7 +15,6 @@ dependencies {
     testCompile project(":repository").sourceSets.main.output
     compile "org.springframework.boot:spring-boot-starter-web"
     testCompile "org.springframework.boot:spring-boot-test"
-    testCompile "org.assertj:assertj-core"
 }
 
 bootRepackage {

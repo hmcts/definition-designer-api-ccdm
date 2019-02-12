@@ -29,8 +29,7 @@ public class IdamIT extends IntegrationTest {
             restTemplate.exchange(URI_NON_IMPORT_ENDPOINT, GET, validRequestEntity(), String.class);
 
         assertHappyPath(response);
-        verify(getRequestedFor(urlEqualTo(IDAM_DETAILS)).withHeader(AUTHORIZATION,
-                                                                       equalTo(VALID_IDAM_TOKEN)));
+        verify(getRequestedFor(urlEqualTo(IDAM_DETAILS)).withHeader(AUTHORIZATION, equalTo(VALID_IDAM_TOKEN)));
     }
 
     /**
