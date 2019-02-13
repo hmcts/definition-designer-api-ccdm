@@ -64,7 +64,7 @@ ext {
     junitVintageVersion = '5.4.0'
     postgresqlVersion = '42.2.5'
     reformLogging= '2.2.1'
-    springBootVersion = '1.5.19.RELEASE'
+    springBootVersion = '2.1.2.RELEASE'
     springfoxSwaggerVersion = '2.9.2'
     limits = [
         'instruction': 99,
