@@ -186,7 +186,7 @@ subprojects {
             exclude group: 'org.hamcrest'
         }
         testCompile "org.mockito:mockito-all:1.10.19"
-        testCompile 'org.mockito:mockito-junit-jupiter:2.24.0'
+        testCompile 'org.mockito:mockito-junit-jupiter:2.24.5'
         testCompile 'com.github.npathai:hamcrest-optional:2.0.0'
         testCompile group: 'org.springframework.cloud', name: 'spring-cloud-contract-wiremock', version: '2.1.0.RELEASE'
         testCompile group: 'org.hamcrest', name: 'hamcrest-junit', version: '2.0.0.0'
