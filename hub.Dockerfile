@@ -9,7 +9,7 @@ USER gradle
 WORKDIR /home/gradle/src
 RUN gradle assemble
 
-FROM hmcts/cnp-java-base:openjdk-jre-8-alpine-1.4
+FROM hmcts/cnp-java-base:openjdk-8u191-jre-alpine3.9-1.0
 
 ENV APP case-definition-designer-api.jar
 ENV APPLICATION_TOTAL_MEMORY 950M
@@ -17,8 +17,9 @@ ENV APPLICATION_SIZE_ON_DISK_IN_MB 90
 
 ENV JAVA_OPTS "-Djava.security.egd=file:/dev/./urandom"
 
-COPY --from=builder /home/gradle/src/build/libs/$APP /opt/app/
+COPY --from=builder /home/gradle/src/build/libs/case-definition-designer-api.jar /opt/app/
 
 HEALTHCHECK --interval=10s --timeout=10s --retries=10 CMD http_proxy="" curl --silent --fail http://localhost:4451/status/health
 
-EXPOSE 4454
+EXPOSE 4451
+CMD [ "case-definition-designer-api.jar" ]
