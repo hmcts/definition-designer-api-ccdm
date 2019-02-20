@@ -22,7 +22,6 @@ plugins {
     id "com.github.kt3k.coveralls" version "2.8.2"
     id "com.github.spotbugs" version "1.6.6"
     id 'io.franzbecker.gradle-lombok' version '2.0'
-    id 'net.ltgt.apt' version '0.21'
 }
 
 apply plugin: 'java'
@@ -53,10 +52,6 @@ dependencyCheck {
     }
 }
 
-//spring boot dependency override
-//overriding some default spring boot deps because too old. Not generally recommended but needed to prevent runtime errors with version 6.4.2 of Elastic
-ext['javax-validation.version'] = '2.0.1.Final'
-ext['hibernate-validator.version'] = '6.0.14.Final'
 //overriding log4j2 default version 2.7 because of vulnerability issues
 ext['log4j2.version'] = '2.11.2'
 // end
@@ -106,7 +101,6 @@ allprojects {
 
     ext {
         hibernateVersion = '5.2.16.Final'
-        elasticSearchVersion = '6.4.2'
     }
 
     dependencies {
@@ -121,14 +115,6 @@ allprojects {
 
     checkstyleMain.shouldRunAfter(compileJava)
     test.shouldRunAfter(checkstyleTest)
-
-    configurations.all {
-        resolutionStrategy {
-            dependencySubstitution {
-                substitute module('org.elasticsearch:elasticsearch') with module("org.elasticsearch:elasticsearch:${elasticSearchVersion}")
-            }
-        }
-    }
 }
 
 sourceCompatibility = 1.8
@@ -185,11 +171,9 @@ subprojects {
         }
         compile group: 'com.zaxxer', name: 'HikariCP', version: '3.3.1'
         compile group: 'org.jooq', name: 'jool-java-8', version: '0.9.14'
-        runtime "org.elasticsearch:elasticsearch:${elasticSearchVersion}"
         compile group: 'javax.inject', name: 'javax.inject', version: '1'
 
         compile group: 'com.microsoft.azure', name: 'azure-storage', version: '8.0.0'
-        compile group: 'org.liquibase', name: 'liquibase-core', version: '3.6.3'
 
         // To avoid compiler warnings about @API annotations in JUnit5 code.
         testCompileOnly 'org.apiguardian:apiguardian-api:1.0.0'
