@@ -1,12 +1,13 @@
 package uk.gov.hmcts.ccd.definition.designer.repository;
 
+import java.io.Serializable;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-
-import java.io.Serializable;
-import java.util.List;
 
 abstract class AbstractDefinitionRepositoryDecorator<T, I extends Serializable, R extends DefinitionRepository<T, I>>
     implements DefinitionRepository<T, I> {
@@ -17,14 +18,10 @@ abstract class AbstractDefinitionRepositoryDecorator<T, I extends Serializable, 
         this.repository = repository;
     }
 
+    /*FORWARDING METHODS*/
     @Override
     public <S extends T> S save(S s) {
         return repository.save(s);
-    }
-
-    @Override
-    public <S extends T> List<S> save(Iterable<S> iterable) {
-        return repository.save(iterable);
     }
 
     @Override
@@ -43,11 +40,6 @@ abstract class AbstractDefinitionRepositoryDecorator<T, I extends Serializable, 
     }
 
     @Override
-    public List<T> findAll(Iterable<I> iterable) {
-        return repository.findAll(iterable);
-    }
-
-    @Override
     public <S extends T> List<S> findAll(Example<S> example) {
         return repository.findAll(example);
     }
@@ -63,6 +55,11 @@ abstract class AbstractDefinitionRepositoryDecorator<T, I extends Serializable, 
     }
 
     @Override
+    public List<T> findAllById(Iterable<I> iterable) {
+        return repository.findAllById(iterable);
+    }
+
+    @Override
     public long count() {
         return repository.count();
     }
@@ -73,8 +70,8 @@ abstract class AbstractDefinitionRepositoryDecorator<T, I extends Serializable, 
     }
 
     @Override
-    public void delete(I id) {
-        repository.delete(id);
+    public void deleteById(I id) {
+        repository.deleteById(id);
     }
 
     @Override
@@ -83,8 +80,8 @@ abstract class AbstractDefinitionRepositoryDecorator<T, I extends Serializable, 
     }
 
     @Override
-    public void delete(Iterable<? extends T> iterable) {
-        repository.delete(iterable);
+    public void deleteAll(Iterable<? extends T> iterable) {
+        repository.deleteAll(iterable);
     }
 
     @Override
@@ -93,23 +90,13 @@ abstract class AbstractDefinitionRepositoryDecorator<T, I extends Serializable, 
     }
 
     @Override
-    public T findOne(I id) {
-        return repository.findOne(id);
+    public <S extends T> List<S> saveAll(Iterable<S> iterable) {
+        return repository.saveAll(iterable);
     }
 
     @Override
-    public <S extends T> S findOne(Example<S> example) {
-        return repository.findOne(example);
-    }
-
-    @Override
-    public boolean exists(I id) {
-        return repository.exists(id);
-    }
-
-    @Override
-    public <S extends T> boolean exists(Example<S> example) {
-        return repository.exists(example);
+    public Optional<T> findById(I id) {
+        return repository.findById(id);
     }
 
     @Override
@@ -136,4 +123,20 @@ abstract class AbstractDefinitionRepositoryDecorator<T, I extends Serializable, 
     public T getOne(I id) {
         return repository.getOne(id);
     }
+
+    @Override
+    public <S extends T> Optional<S> findOne(Example<S> example) {
+        return repository.findOne(example);
+    }
+
+    @Override
+    public <S extends T> boolean exists(Example<S> example) {
+        return repository.exists(example);
+    }
+
+    @Override
+    public boolean existsById(I id) {
+        return repository.existsById(id);
+    }
+
 }

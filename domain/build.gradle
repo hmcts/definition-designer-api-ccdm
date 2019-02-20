@@ -14,10 +14,15 @@ configurations {
 }
 
 jar {
-    baseName = 'definition-designer-domain'
+    enabled = true
+    manifest {
+        attributes 'Implementation-Title': project.name,
+                'Implementation-Version': project.version
+    }
+    archiveName = 'definition-designer-domain.jar'
 }
 
-bootRepackage {
+bootJar {
     enabled = false
 }
 

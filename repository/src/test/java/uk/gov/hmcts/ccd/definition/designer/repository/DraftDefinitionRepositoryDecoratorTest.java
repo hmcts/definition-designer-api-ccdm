@@ -15,11 +15,13 @@ import uk.gov.hmcts.ccd.definition.designer.repository.entity.JurisdictionEntity
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphanumeric;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsNot.not;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static uk.gov.hmcts.ccd.definition.designer.repository.entity.DefinitionStatus.DRAFT;
@@ -64,7 +66,9 @@ public class DraftDefinitionRepositoryDecoratorTest {
         final DefinitionEntity definitionEntity1 = testHelper.buildDefinition(testJurisdiction, "Test definition");
 
         final DefinitionEntity savedDefinitionEntity = classUnderTest.save(definitionEntity1);
-        final DefinitionEntity retrievedDefinitionEntity = repository.findOne(savedDefinitionEntity.getId());
+        final Optional<DefinitionEntity> optionalEntity = repository.findById(savedDefinitionEntity.getId());
+        assertNotNull(optionalEntity.get());
+        final DefinitionEntity retrievedDefinitionEntity = optionalEntity.get();
         assertThat(retrievedDefinitionEntity.getVersion(), is(1));
         assertThat(retrievedDefinitionEntity.getStatus(), is(DRAFT));
 

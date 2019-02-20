@@ -21,11 +21,11 @@ public class VersionedDefinitionRepositoryDecorator<T extends Versionable, I ext
     }
 
     @Override
-    public <S extends T> List<S> save(Iterable<S> iterable) {
+    public <S extends T> List<S> saveAll(Iterable<S> iterable) {
         for (S s : iterable) {
             final Optional<Integer> version = repository.findLastVersion(s.getReference());
             s.setVersion(1 + version.orElse(0));
         }
-        return repository.save(iterable);
+        return repository.saveAll(iterable);
     }
 }

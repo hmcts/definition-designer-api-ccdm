@@ -38,11 +38,11 @@ class VersionedDefinitionRepositoryDecoratorTest {
     @Test
     void saveIterable() {
         List<JurisdictionEntity> list = asList(jurisdiction);
-        given(jurisdictionRepository.save(list)).willReturn(list);
+        given(jurisdictionRepository.saveAll(list)).willReturn(list);
 
-        final List<JurisdictionEntity> entityList = versionedJurisdictionRepository.save(list);
+        final List<JurisdictionEntity> entityList = versionedJurisdictionRepository.saveAll(list);
         assertThat(entityList, hasSize(1));
         assertThat(entityList.get(0).getVersion(), is(99));
-        verify(jurisdictionRepository).save(list);
+        verify(jurisdictionRepository).saveAll(list);
     }
 }

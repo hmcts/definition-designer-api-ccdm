@@ -67,7 +67,7 @@ public class JsonUtilsTest {
         } catch (IllegalArgumentException ex) {
             final Throwable cause = ex.getCause();
             assertThat(cause, instanceOf(JsonMappingException.class));
-            Assertions.assertThat(cause).hasMessageContaining("Can not construct instance of java.time.LocalDate");
+            Assertions.assertThat(cause).hasMessageContaining("Cannot construct instance of `java.time.LocalDate`");
             throw cause;
         }
     }
@@ -82,7 +82,7 @@ public class JsonUtilsTest {
         } catch (IllegalArgumentException ex) {
             final Throwable cause = ex.getCause();
             assertThat(cause, instanceOf(JsonMappingException.class));
-            Assertions.assertThat(cause).hasMessageContaining("Can not deserialize instance of java.lang.String out of START_OBJECT token");
+            Assertions.assertThat(cause).hasMessageContaining("Cannot deserialize instance of `java.lang.String` out of START_OBJECT token");
             throw cause;
         }
     }
