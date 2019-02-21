@@ -7,6 +7,7 @@ import org.springframework.util.ReflectionUtils;
 
 import java.lang.reflect.Field;
 import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 
 class ApplicationParamsTest {
@@ -17,6 +18,7 @@ class ApplicationParamsTest {
     @BeforeEach
     void setUp() {
         final Field idamHostField = ReflectionUtils.findField(ApplicationParams.class, "idamHost");
+        assertNotNull(idamHostField);
         ReflectionUtils.makeAccessible(idamHostField);
         ReflectionUtils.setField(idamHostField, classUnderTest, IDAM_HOST_URL);
     }
