@@ -329,15 +329,12 @@ idea {
 }
 
 // this allows ./gradlew run
-jar {
-    enabled = true
+bootJar {
     manifest {
         attributes 'Implementation-Title': project.name,
                 'Implementation-Version': project.version
     }
-    configurations {
-        jar.archiveName = 'case-definition-designer-api.jar'
-    }
+    archiveName = 'case-definition-designer-api.jar'
 }
 
 // Although there are no sources to compile, Jenkins pipeline needs the jar file to be here
