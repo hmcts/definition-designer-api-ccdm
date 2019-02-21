@@ -45,6 +45,12 @@ withPipeline(type, product, app) {
     }
     onPR {
         enableSlackNotifications('#ccd-pr-builds')
+
+        env.OAUTH2_CLIENT_ID = "ccd_gateway"
+        env.OAUTH2_REDIRECT_URI = "https://www-ccd.nonprod.platform.hmcts.net/oauth2redirect"
+        env.IDAM_URL = "https://preprod-idamapi.reform.hmcts.net:3511"
+        env.S2S_URL = "http://rpe-service-auth-provider-aat.service.core-compute-aat.internal"
+        env.CCD_GW_SERVICE_NAME = "ccd_gw"
     }
 
     enableDbMigration()
@@ -52,4 +58,6 @@ withPipeline(type, product, app) {
 
     overrideVaultEnvironments(vaultOverrides)
     loadVaultSecrets(secrets)
+
+    installCharts()
 }
