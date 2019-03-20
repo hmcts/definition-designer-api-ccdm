@@ -109,7 +109,7 @@ allprojects {
 
     checkstyle {
         maxWarnings = 0
-        toolVersion = '8.17'
+        toolVersion = '8.18'
         configDir = new File(rootDir, 'config/checkstyle')
     }
 
@@ -279,7 +279,7 @@ subprojects {
 
     checkstyle {
         maxWarnings = 0
-        toolVersion = '8.17'
+        toolVersion = '8.18'
         configDir = new File(rootDir, 'config/checkstyle')
     }
 
