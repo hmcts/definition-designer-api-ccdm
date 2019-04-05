@@ -193,7 +193,7 @@ subprojects {
         testImplementation('org.springframework.boot:spring-boot-starter-test')
         testImplementation('org.springframework.cloud:spring-cloud-starter-contract-stub-runner:2.1.0.RELEASE')
         testCompile('org.springframework.cloud:spring-cloud-contract-wiremock:2.1.0.RELEASE')
-        testCompile ("org.mockito:mockito-core:2.24.0") {
+        testCompile ("org.mockito:mockito-core:2.26.0") {
             exclude group: 'org.hamcrest'
         }
         testCompile "org.mockito:mockito-all:1.10.19"
