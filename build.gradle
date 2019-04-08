@@ -177,7 +177,7 @@ subprojects {
         compile group: 'org.jooq', name: 'jool-java-8', version: '0.9.14'
         compile group: 'javax.inject', name: 'javax.inject', version: '1'
 
-        compile group: 'com.microsoft.azure', name: 'azure-storage', version: '8.0.0'
+        compile group: 'com.microsoft.azure', name: 'azure-storage', version: '8.2.0'
 
         // To avoid compiler warnings about @API annotations in JUnit5 code.
         testCompileOnly 'org.apiguardian:apiguardian-api:1.0.0'
