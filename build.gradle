@@ -201,7 +201,7 @@ subprojects {
         testCompile 'com.github.npathai:hamcrest-optional:2.0.0'
         testCompile group: 'org.springframework.cloud', name: 'spring-cloud-contract-wiremock', version: '2.1.0.RELEASE'
         testCompile group: 'org.hamcrest', name: 'hamcrest-junit', version: '2.0.0.0'
-        testCompile 'io.github.openfeign:feign-jackson:9.7.0'
+        testCompile 'io.github.openfeign:feign-jackson:10.2.3'
         testCompile 'io.github.openfeign.form:feign-form:3.5.0'
         testCompile "org.exparity:hamcrest-date:2.0.5"
         testCompile "io.rest-assured:rest-assured:3.3.0"
