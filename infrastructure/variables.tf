@@ -77,7 +77,6 @@ variable "database_name" {
 ////////////////////////////////
 
 variable "idam_api_url" {
-  default = "http://betaDevBccidamAppLB.reform.hmcts.net"
 }
 
 ////////////////////////////////

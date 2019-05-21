@@ -1,3 +1,4 @@
+idam_api_url = "https://idam-api.sprod.platform.hmcts.net"
 capacity = "2"
 asp_name = "ccd-definition-designer-api-sprod"
 asp_rg = "ccd-definition-designer-api-sprod"
