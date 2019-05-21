@@ -53,9 +53,14 @@ resource "azurerm_storage_container" "imports_container" {
   container_access_type = "private"
 }
 
+data "azurerm_key_vault" "s2s_vault" {
+  name = "s2s-${local.local_env}"
+  resource_group_name = "rpe-service-auth-provider-${local.local_env}"
+}
+
 data "azurerm_key_vault_secret" "definition_designer_s2s_secret" {
   name = "microservicekey-ccd-definition-designer"
-  vault_uri = "${local.s2s_vault_url}"
+  key_vault_id = "${data.azurerm_key_vault.s2s_vault.id}"
 }
 
 data "azurerm_key_vault_secret" "storageaccount_primary_connection_string" {
