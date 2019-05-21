@@ -1,0 +1,9 @@
+idam_api_url = "https://idam-api.perftest.platform.hmcts.net"
+capacity = "2"
+asp_name = "ccd-definition-designer-api-perftest"
+asp_rg = "ccd-definition-designer-api-perftest"
+elastic_search_enabled = "true"
+elastic_search_fail_on_import = "true"
+elastic_search_index_shards = 2
+elastic_search_index_shards_replicas = 1
+elastic_search_dynamc = "false"
