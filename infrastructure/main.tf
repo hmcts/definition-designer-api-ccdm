@@ -65,24 +65,24 @@ data "azurerm_key_vault_secret" "definition_designer_s2s_secret" {
 
 data "azurerm_key_vault_secret" "storageaccount_primary_connection_string" {
   name = "storage-account-primary-connection-string"
-  vault_uri = "${data.azurerm_key_vault.ccd_shared_key_vault.vault_uri}"
+  key_vault_id = "${data.azurerm_key_vault.ccd_shared_key_vault.id}"
 }
 
 data "azurerm_key_vault_secret" "storageaccount_secondary_connection_string" {
   name = "storage-account-secondary-connection-string"
-  vault_uri = "${data.azurerm_key_vault.ccd_shared_key_vault.vault_uri}"
+  key_vault_id = "${data.azurerm_key_vault.ccd_shared_key_vault.id}"
 }
 
 data "azurerm_key_vault_secret" "ccd_elastic_search_url" {
   count = "${var.elastic_search_enabled == "false" ? 0 : 1}"
   name = "ccd-ELASTIC-SEARCH-URL"
-  vault_uri = "${data.azurerm_key_vault.ccd_shared_key_vault.vault_uri}"
+  key_vault_id = "${data.azurerm_key_vault.ccd_shared_key_vault.id}"
 }
 
 data "azurerm_key_vault_secret" "ccd_elastic_search_password" {
   count = "${var.elastic_search_enabled == "false" ? 0 : 1}"
   name = "ccd-ELASTIC-SEARCH-PASSWORD"
-  vault_uri = "${data.azurerm_key_vault.ccd_shared_key_vault.vault_uri}"
+  key_vault_id = "${data.azurerm_key_vault.ccd_shared_key_vault.id}"
 }
 
 module "ccd-definition-designer-api" {
@@ -154,29 +154,29 @@ module "definition-designer-db" {
 resource "azurerm_key_vault_secret" "POSTGRES-USER" {
   name = "${local.app_full_name}-POSTGRES-USER"
   value = "${module.definition-designer-db.user_name}"
-  vault_uri = "${data.azurerm_key_vault.ccd_shared_key_vault.vault_uri}"
+  key_vault_id = "${data.azurerm_key_vault.ccd_shared_key_vault.id}"
 }
 
 resource "azurerm_key_vault_secret" "POSTGRES-PASS" {
   name = "${local.app_full_name}-POSTGRES-PASS"
   value = "${module.definition-designer-db.postgresql_password}"
-  vault_uri = "${data.azurerm_key_vault.ccd_shared_key_vault.vault_uri}"
+  key_vault_id = "${data.azurerm_key_vault.ccd_shared_key_vault.id}"
 }
 
 resource "azurerm_key_vault_secret" "POSTGRES_HOST" {
   name = "${local.app_full_name}-POSTGRES-HOST"
   value = "${module.definition-designer-db.host_name}"
-  vault_uri = "${data.azurerm_key_vault.ccd_shared_key_vault.vault_uri}"
+  key_vault_id = "${data.azurerm_key_vault.ccd_shared_key_vault.id}"
 }
 
 resource "azurerm_key_vault_secret" "POSTGRES_PORT" {
   name = "${local.app_full_name}-POSTGRES-PORT"
   value = "${module.definition-designer-db.postgresql_listen_port}"
-  vault_uri = "${data.azurerm_key_vault.ccd_shared_key_vault.vault_uri}"
+  key_vault_id = "${data.azurerm_key_vault.ccd_shared_key_vault.id}"
 }
 
 resource "azurerm_key_vault_secret" "POSTGRES_DATABASE" {
   name = "${local.app_full_name}-POSTGRES-DATABASE"
   value = "${module.definition-designer-db.postgresql_database}"
-  vault_uri = "${data.azurerm_key_vault.ccd_shared_key_vault.vault_uri}"
+  key_vault_id = "${data.azurerm_key_vault.ccd_shared_key_vault.id}"
 }
