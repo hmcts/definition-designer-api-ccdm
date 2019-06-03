@@ -1,7 +1,7 @@
-idam_api_url = "https://idam-api.sprod.platform.hmcts.net"
+idam_api_url = "https://idam-api.perftest.platform.hmcts.net"
 capacity = "2"
-asp_name = "ccd-definition-designer-api-sprod"
-asp_rg = "ccd-definition-designer-api-sprod"
+asp_name = "ccd-definition-designer-api-perftest"
+asp_rg = "ccd-definition-designer-api-perftest"
 elastic_search_enabled = "true"
 elastic_search_fail_on_import = "true"
 elastic_search_index_shards = 2
