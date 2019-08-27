@@ -1,22 +1,12 @@
-postgresql:
-  initdbScripts:
-    init.sql: |-
-      CREATE USER ccd WITH PASSWORD 'ccd';
-      CREATE DATABASE ccd_definition_designer WITH OWNER = ccd ENCODING = 'UTF-8' CONNECTION LIMIT = -1;
-  nameOverride: postgres
-  persistence:
-    enabled: false
-
 java:
-  image: ${IMAGE_NAME}
-  ingressHost: ${SERVICE_FQDN}
+  image: hmcts.azurecr.io/hmcts/ccd-definition-designer-api:latest
   applicationPort: 4454
   environment:
-    DEFINITION_DESIGNER_DB_HOST: ${SERVICE_NAME}-postgres
+    DEFINITION_DESIGNER_DB_HOST: "{{ .Release.Name }}-postgresql"
     DEFINITION_DESIGNER_DB_PORT: 5432
-    DEFINITION_DESIGNER_DB_NAME: ccd_definition_designer
-    DEFINITION_DESIGNER_DB_USERNAME: ccd
-    DEFINITION_DESIGNER_DB_PASSWORD: ccd
+    DEFINITION_DESIGNER_DB_NAME: "{{ .Values.postgresql.postgresqlDatabase}}"
+    DEFINITION_DESIGNER_DB_USERNAME: "{{ .Values.postgresql.postgresqlUsername}}"
+    DEFINITION_DESIGNER_DB_PASSWORD: "{{ .Values.postgresql.postgresqlPassword}}"
     DEFINITION_DESIGNER_DB_USE_SSL: false
     ENABLE_DB_MIGRATE: true
 
