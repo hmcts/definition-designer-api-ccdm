@@ -1,4 +1,4 @@
-# ccd-definition-designer-api
+# ccd-definition-designer-api ****** NOW REDUNDANT ******
 [![API Docs](https://img.shields.io/badge/API%20Docs-site-e140ad.svg)](https://hmcts.github.io/reform-api-docs/swagger.html?url=https://hmcts.github.io/reform-api-docs/specs/ccd-definition-designer-api.json)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Build Status](https://api.travis-ci.org/hmcts/ccd-definition-designer-api.svg?branch=master)](https://travis-ci.org/hmcts/ccd-definition-designer-api)
